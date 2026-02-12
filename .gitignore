@@ -52,6 +52,7 @@ env/
 # ============================================
 # Keep stablecoin_analysis_all_jurisdictions/ - it's the knowledge base!
 # stablecoin_analysis_all_jurisdictions/
+report_cache/
 monitoring_data/
 regulatory_snapshots/
 revisions/

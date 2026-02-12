@@ -314,10 +314,13 @@ with tab_zodia:
         )
 
     # Action buttons
-    col_btn1, col_btn2, col_btn3 = st.columns([1, 1, 2])
+    col_btn1, col_btn2, col_btn3, col_btn4 = st.columns([1, 1, 1, 1])
     with col_btn1:
         run_research = st.button("🔍 Run Research", type="primary", use_container_width=True)
     with col_btn2:
+        force_refresh = st.button("🔄 Force Refresh", use_container_width=True,
+                                   help="Bypass cache and generate a completely new analysis")
+    with col_btn3:
         export_btn = st.button("📥 Export Report", use_container_width=True)
 
     # Registration status display
@@ -334,15 +337,30 @@ with tab_zodia:
         </div>""", unsafe_allow_html=True)
 
     # Run research
-    if run_research:
+    if run_research or force_refresh:
         engine = st.session_state.zodia_engine
+        is_force = force_refresh
 
         if research_mode == "Single Country":
-            with st.spinner(f"Researching {country_name}... This may take 30-60 seconds."):
+            spinner_msg = (
+                f"Force-refreshing {country_name}... This may take 30-60 seconds."
+                if is_force else
+                f"Researching {country_name}... (cached results returned instantly, new analysis takes 30-60s)"
+            )
+            with st.spinner(spinner_msg):
                 try:
-                    result = engine.research_jurisdiction(country_name, include_news=True)
+                    result = engine.research_jurisdiction(
+                        country_name, include_news=True, force_refresh=is_force
+                    )
                     st.session_state.current_result = result
                     st.session_state.batch_results = None
+                    # Show cache info
+                    if result.get("_from_cache"):
+                        age_hrs = result.get("_cache_age_seconds", 0) / 3600
+                        st.info(
+                            f"Showing cached analysis (generated {age_hrs:.1f} hours ago). "
+                            f"Click **Force Refresh** for a new analysis."
+                        )
                 except Exception as e:
                     st.error(f"Research failed: {str(e)}")
                     import traceback
@@ -363,7 +381,9 @@ with tab_zodia:
                     text=f"Researching {jur}... ({i+1}/{len(jurisdictions_to_research)})"
                 )
                 try:
-                    results[jur] = engine.research_jurisdiction(jur, include_news=True)
+                    results[jur] = engine.research_jurisdiction(
+                        jur, include_news=True, force_refresh=is_force
+                    )
                 except Exception as e:
                     results[jur] = {"jurisdiction": jur, "status": "error", "error": str(e)}
                 time.sleep(2)
@@ -380,7 +400,9 @@ with tab_zodia:
                     text=f"Researching {jur}... ({i+1}/{len(ZODIA_EU_MICA_JURISDICTIONS)})"
                 )
                 try:
-                    results[jur] = engine.research_jurisdiction(jur, include_news=True)
+                    results[jur] = engine.research_jurisdiction(
+                        jur, include_news=True, force_refresh=is_force
+                    )
                 except Exception as e:
                     results[jur] = {"jurisdiction": jur, "status": "error", "error": str(e)}
                 time.sleep(3)

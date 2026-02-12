@@ -18,7 +18,9 @@ if LANGSMITH_API_KEY:
 
 # LLM Configuration
 LLM_MODEL = os.getenv("LLM_MODEL", "deepseek-chat")
-LLM_TEMPERATURE = float(os.getenv("LLM_TEMPERATURE", "0.3"))
+# Temperature 0 = deterministic: same query → same result every time
+# Critical for compliance tool where different users must see identical analysis
+LLM_TEMPERATURE = float(os.getenv("LLM_TEMPERATURE", "0.0"))
 
 # Research Configuration
 MAX_NEWS_ARTICLES = int(os.getenv("MAX_NEWS_ARTICLES", "20"))

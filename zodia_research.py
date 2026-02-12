@@ -7,9 +7,12 @@ Only returns enacted/enforced/final regulations.
 """
 
 import json
+import os
+import hashlib
 import time
 from typing import Dict, List, Optional
 from datetime import datetime
+from pathlib import Path
 from langchain_deepseek import ChatDeepSeek
 try:
     from langchain_core.messages import HumanMessage, SystemMessage
@@ -67,6 +70,18 @@ class ZodiaResearchEngine:
         self.research_tools = ResearchTools()
         self.results_cache = {}
 
+        # Persistent cache directory - shared across all sessions/users
+        self._cache_dir = Path(__file__).parent / "report_cache"
+        try:
+            self._cache_dir.mkdir(exist_ok=True)
+        except Exception:
+            # Fallback for cloud environments
+            self._cache_dir = Path("/tmp") / "zodia_report_cache"
+            self._cache_dir.mkdir(exist_ok=True)
+        # Cache TTL: 24 hours (in seconds)
+        self._cache_ttl = 86400
+        print(f"[CACHE] Report cache directory: {self._cache_dir}")
+
         # Load local regulatory knowledge base (257 jurisdictions previously scraped)
         self.knowledge_base = RegulatoryKnowledgeBase()
         try:
@@ -87,17 +102,98 @@ class ZodiaResearchEngine:
         except Exception:
             print("[NEWS] NewsAPI not available - using knowledge base only")
 
+    # =========================================================================
+    # CACHING - ensures all users see identical results for the same query
+    # =========================================================================
+    def _cache_key(self, jurisdiction: str) -> str:
+        """Generate a deterministic cache key for a jurisdiction."""
+        safe = jurisdiction.lower().strip().replace(" ", "_").replace("/", "_")
+        return safe
+
+    def _get_cached_result(self, jurisdiction: str) -> Optional[Dict]:
+        """Load a cached result if it exists and is fresh (within TTL)."""
+        key = self._cache_key(jurisdiction)
+        cache_file = self._cache_dir / f"{key}.json"
+        if not cache_file.exists():
+            return None
+        try:
+            with open(cache_file, "r", encoding="utf-8") as f:
+                cached = json.load(f)
+            # Check TTL
+            cached_time = datetime.fromisoformat(cached.get("timestamp", "2000-01-01"))
+            age_seconds = (datetime.now() - cached_time).total_seconds()
+            if age_seconds > self._cache_ttl:
+                print(f"[CACHE] Expired for {jurisdiction} (age: {age_seconds:.0f}s > {self._cache_ttl}s)")
+                return None
+            print(f"[CACHE] HIT for {jurisdiction} (age: {age_seconds:.0f}s)")
+            cached["_from_cache"] = True
+            cached["_cache_age_seconds"] = age_seconds
+            return cached
+        except Exception as e:
+            print(f"[CACHE] Error reading cache for {jurisdiction}: {e}")
+            return None
+
+    def _save_to_cache(self, jurisdiction: str, result: Dict):
+        """Save a result to the persistent cache."""
+        key = self._cache_key(jurisdiction)
+        cache_file = self._cache_dir / f"{key}.json"
+        try:
+            # Don't cache fallback/error reports
+            if result.get("report", {}).get("_fallback"):
+                print(f"[CACHE] Skipping cache for {jurisdiction} (fallback report)")
+                return
+            # Remove non-serializable or transient fields
+            clean = {k: v for k, v in result.items() if not k.startswith("_")}
+            with open(cache_file, "w", encoding="utf-8") as f:
+                json.dump(clean, f, indent=2, ensure_ascii=False, default=str)
+            print(f"[CACHE] SAVED for {jurisdiction}")
+        except Exception as e:
+            print(f"[CACHE] Error saving cache for {jurisdiction}: {e}")
+
+    def clear_cache(self, jurisdiction: str = None):
+        """Clear cached results. If jurisdiction is None, clear all."""
+        if jurisdiction:
+            key = self._cache_key(jurisdiction)
+            cache_file = self._cache_dir / f"{key}.json"
+            if cache_file.exists():
+                cache_file.unlink()
+                print(f"[CACHE] Cleared for {jurisdiction}")
+        else:
+            for f in self._cache_dir.glob("*.json"):
+                f.unlink()
+            print("[CACHE] All cache cleared")
+
+    # =========================================================================
+    # MAIN RESEARCH METHOD
+    # =========================================================================
     def research_jurisdiction(
         self,
         jurisdiction: str,
         include_news: bool = True,
-        progress_callback=None
+        progress_callback=None,
+        force_refresh: bool = False
     ) -> Dict:
         """
         Perform comprehensive regulatory research for a single jurisdiction.
-        Uses: (1) Local knowledge base from previous scrape, (2) Live NewsAPI if available,
-        (3) DeepSeek LLM analysis with both as context.
+        Uses persistent caching so all users see identical results.
+        Uses: (1) Cache check, (2) Local knowledge base, (3) Live NewsAPI if available,
+        (4) DeepSeek LLM analysis with both as context.
         """
+        # Step 0: Check persistent cache first (unless force refresh)
+        if not force_refresh:
+            cached = self._get_cached_result(jurisdiction)
+            if cached:
+                if progress_callback:
+                    age = cached.get("_cache_age_seconds", 0)
+                    progress_callback(
+                        f"Using cached analysis for {jurisdiction} "
+                        f"(generated {age/3600:.1f} hours ago). "
+                        f"Click 'Force Refresh' for a new analysis."
+                    )
+                return cached
+        elif progress_callback:
+            progress_callback(f"Force refresh requested for {jurisdiction}...")
+
         start_time = datetime.now()
 
         if progress_callback:
@@ -147,7 +243,7 @@ class ZodiaResearchEngine:
             data_sources.append("Local Knowledge Base (257 jurisdictions)")
         if news_articles:
             data_sources.append(f"Live NewsAPI ({len(news_articles)} articles)")
-        data_sources.append("DeepSeek LLM Analysis")
+        data_sources.append("DeepSeek LLM Analysis (temperature=0, deterministic)")
 
         result = {
             "jurisdiction": jurisdiction,
@@ -163,6 +259,9 @@ class ZodiaResearchEngine:
             "report": report,
             "status": "success"
         }
+
+        # Save to persistent cache (so next user gets identical result)
+        self._save_to_cache(jurisdiction, result)
 
         self.results_cache[jurisdiction] = result
         return result
