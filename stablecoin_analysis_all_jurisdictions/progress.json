@@ -1,0 +1,2063 @@
+{
+  "completed": [
+    {
+      "jurisdiction": "European Union",
+      "timestamp": "2026-01-30T04:45:57.760861",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\European_Union_analysis.json",
+      "gaps_critical": 0,
+      "gaps_high": 0,
+      "sources": 5
+    },
+    {
+      "jurisdiction": "United States",
+      "timestamp": "2026-01-30T04:53:42.273595",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\United_States_analysis.json",
+      "gaps_critical": 3,
+      "gaps_high": 3,
+      "sources": 5
+    },
+    {
+      "jurisdiction": "United Kingdom",
+      "timestamp": "2026-01-30T05:02:47.069428",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\United_Kingdom_analysis.json",
+      "gaps_critical": 2,
+      "gaps_high": 4,
+      "sources": 1
+    },
+    {
+      "jurisdiction": "Afghanistan",
+      "timestamp": "2026-01-30T05:08:19.164958",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Afghanistan_analysis.json",
+      "gaps_critical": 3,
+      "gaps_high": 3,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Albania",
+      "timestamp": "2026-01-30T05:15:03.474721",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Albania_analysis.json",
+      "gaps_critical": 3,
+      "gaps_high": 3,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Algeria",
+      "timestamp": "2026-01-30T05:20:29.422918",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Algeria_analysis.json",
+      "gaps_critical": 1,
+      "gaps_high": 3,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Andorra",
+      "timestamp": "2026-01-30T05:27:03.879566",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Andorra_analysis.json",
+      "gaps_critical": 2,
+      "gaps_high": 3,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Angola",
+      "timestamp": "2026-01-30T05:33:56.941464",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Angola_analysis.json",
+      "gaps_critical": 3,
+      "gaps_high": 4,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Antigua and Barbuda",
+      "timestamp": "2026-01-30T05:40:59.589096",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Antigua_and_Barbuda_analysis.json",
+      "gaps_critical": 3,
+      "gaps_high": 3,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Argentina",
+      "timestamp": "2026-01-30T05:47:22.843685",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Argentina_analysis.json",
+      "gaps_critical": 2,
+      "gaps_high": 4,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Armenia",
+      "timestamp": "2026-01-30T05:53:45.939095",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Armenia_analysis.json",
+      "gaps_critical": 2,
+      "gaps_high": 3,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Australia",
+      "timestamp": "2026-01-30T06:00:48.457182",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Australia_analysis.json",
+      "gaps_critical": 3,
+      "gaps_high": 3,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Austria",
+      "timestamp": "2026-01-30T06:06:21.987771",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Austria_analysis.json",
+      "gaps_critical": 3,
+      "gaps_high": 3,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Azerbaijan",
+      "timestamp": "2026-01-30T06:12:32.076808",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Azerbaijan_analysis.json",
+      "gaps_critical": 2,
+      "gaps_high": 3,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Bahamas",
+      "timestamp": "2026-01-30T06:19:31.906227",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Bahamas_analysis.json",
+      "gaps_critical": 3,
+      "gaps_high": 4,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Bahrain",
+      "timestamp": "2026-01-30T06:25:02.414362",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Bahrain_analysis.json",
+      "gaps_critical": 2,
+      "gaps_high": 2,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Bangladesh",
+      "timestamp": "2026-01-30T18:39:18.581245",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Bangladesh_analysis.json",
+      "gaps_critical": 2,
+      "gaps_high": 1,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Barbados",
+      "timestamp": "2026-01-30T18:45:17.804142",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Barbados_analysis.json",
+      "gaps_critical": 3,
+      "gaps_high": 3,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Belarus",
+      "timestamp": "2026-01-30T18:50:24.549974",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Belarus_analysis.json",
+      "gaps_critical": 3,
+      "gaps_high": 3,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Belgium",
+      "timestamp": "2026-01-30T18:56:26.561426",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Belgium_analysis.json",
+      "gaps_critical": 3,
+      "gaps_high": 3,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Belize",
+      "timestamp": "2026-01-30T19:01:58.789531",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Belize_analysis.json",
+      "gaps_critical": 3,
+      "gaps_high": 3,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Benin",
+      "timestamp": "2026-01-30T19:08:04.271326",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Benin_analysis.json",
+      "gaps_critical": 2,
+      "gaps_high": 3,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Bhutan",
+      "timestamp": "2026-01-30T19:13:26.963562",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Bhutan_analysis.json",
+      "gaps_critical": 3,
+      "gaps_high": 3,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Bolivia",
+      "timestamp": "2026-01-30T19:19:02.798550",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Bolivia_analysis.json",
+      "gaps_critical": 3,
+      "gaps_high": 3,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Bosnia and Herzegovina",
+      "timestamp": "2026-01-30T19:25:11.441103",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Bosnia_and_Herzegovina_analysis.json",
+      "gaps_critical": 3,
+      "gaps_high": 3,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Botswana",
+      "timestamp": "2026-01-30T19:30:04.274755",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Botswana_analysis.json",
+      "gaps_critical": 3,
+      "gaps_high": 2,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Brazil",
+      "timestamp": "2026-01-30T19:36:25.625173",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Brazil_analysis.json",
+      "gaps_critical": 2,
+      "gaps_high": 3,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Brunei",
+      "timestamp": "2026-01-30T19:41:24.803052",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Brunei_analysis.json",
+      "gaps_critical": 3,
+      "gaps_high": 3,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Bulgaria",
+      "timestamp": "2026-01-30T19:48:29.987273",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Bulgaria_analysis.json",
+      "gaps_critical": 3,
+      "gaps_high": 3,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Burkina Faso",
+      "timestamp": "2026-01-30T19:54:57.856192",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Burkina_Faso_analysis.json",
+      "gaps_critical": 3,
+      "gaps_high": 3,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Burundi",
+      "timestamp": "2026-01-30T20:00:21.944480",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Burundi_analysis.json",
+      "gaps_critical": 3,
+      "gaps_high": 3,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Cabo Verde",
+      "timestamp": "2026-01-30T20:06:03.301957",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Cabo_Verde_analysis.json",
+      "gaps_critical": 3,
+      "gaps_high": 3,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Cambodia",
+      "timestamp": "2026-01-30T20:11:11.109718",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Cambodia_analysis.json",
+      "gaps_critical": 2,
+      "gaps_high": 3,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Cameroon",
+      "timestamp": "2026-01-30T20:17:25.560466",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Cameroon_analysis.json",
+      "gaps_critical": 2,
+      "gaps_high": 3,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Canada",
+      "timestamp": "2026-01-30T20:23:00.571087",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Canada_analysis.json",
+      "gaps_critical": 2,
+      "gaps_high": 3,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Central African Republic",
+      "timestamp": "2026-01-30T20:29:34.052388",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Central_African_Republic_analysis.json",
+      "gaps_critical": 2,
+      "gaps_high": 3,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Chad",
+      "timestamp": "2026-01-30T20:36:02.648983",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Chad_analysis.json",
+      "gaps_critical": 3,
+      "gaps_high": 3,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Chile",
+      "timestamp": "2026-01-30T20:41:29.779831",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Chile_analysis.json",
+      "gaps_critical": 3,
+      "gaps_high": 3,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "China",
+      "timestamp": "2026-01-30T20:47:14.215704",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\China_analysis.json",
+      "gaps_critical": 2,
+      "gaps_high": 3,
+      "sources": 5
+    },
+    {
+      "jurisdiction": "Colombia",
+      "timestamp": "2026-01-30T20:53:53.432060",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Colombia_analysis.json",
+      "gaps_critical": 2,
+      "gaps_high": 3,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Comoros",
+      "timestamp": "2026-01-30T20:59:57.191830",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Comoros_analysis.json",
+      "gaps_critical": 3,
+      "gaps_high": 3,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Congo",
+      "timestamp": "2026-01-30T21:05:01.805941",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Congo_analysis.json",
+      "gaps_critical": 3,
+      "gaps_high": 3,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Costa Rica",
+      "timestamp": "2026-01-30T21:10:07.809929",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Costa_Rica_analysis.json",
+      "gaps_critical": 2,
+      "gaps_high": 3,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Croatia",
+      "timestamp": "2026-01-30T21:15:44.613786",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Croatia_analysis.json",
+      "gaps_critical": 3,
+      "gaps_high": 2,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Cuba",
+      "timestamp": "2026-01-30T21:20:35.944759",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Cuba_analysis.json",
+      "gaps_critical": 2,
+      "gaps_high": 3,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Cyprus",
+      "timestamp": "2026-01-30T21:27:50.316354",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Cyprus_analysis.json",
+      "gaps_critical": 2,
+      "gaps_high": 3,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Czech Republic",
+      "timestamp": "2026-01-30T21:33:04.582872",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Czech_Republic_analysis.json",
+      "gaps_critical": 2,
+      "gaps_high": 3,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Democratic Republic of the Congo",
+      "timestamp": "2026-01-30T21:39:30.586225",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Democratic_Republic_of_the_Congo_analysis.json",
+      "gaps_critical": 2,
+      "gaps_high": 3,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Denmark",
+      "timestamp": "2026-01-30T21:40:24.305386",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Denmark_analysis.json",
+      "gaps_critical": 0,
+      "gaps_high": 0,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Djibouti",
+      "timestamp": "2026-01-30T21:47:25.517015",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Djibouti_analysis.json",
+      "gaps_critical": 2,
+      "gaps_high": 3,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Dominica",
+      "timestamp": "2026-01-30T21:53:24.793884",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Dominica_analysis.json",
+      "gaps_critical": 3,
+      "gaps_high": 2,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Dominican Republic",
+      "timestamp": "2026-01-30T21:59:37.993109",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Dominican_Republic_analysis.json",
+      "gaps_critical": 2,
+      "gaps_high": 4,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Ecuador",
+      "timestamp": "2026-01-30T22:04:49.276234",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Ecuador_analysis.json",
+      "gaps_critical": 2,
+      "gaps_high": 3,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Egypt",
+      "timestamp": "2026-01-30T22:11:15.119239",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Egypt_analysis.json",
+      "gaps_critical": 2,
+      "gaps_high": 3,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "El Salvador",
+      "timestamp": "2026-01-30T22:16:22.266625",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\El_Salvador_analysis.json",
+      "gaps_critical": 1,
+      "gaps_high": 3,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Equatorial Guinea",
+      "timestamp": "2026-01-30T22:23:08.823632",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Equatorial_Guinea_analysis.json",
+      "gaps_critical": 3,
+      "gaps_high": 3,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Eritrea",
+      "timestamp": "2026-01-30T22:29:05.934018",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Eritrea_analysis.json",
+      "gaps_critical": 2,
+      "gaps_high": 3,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Estonia",
+      "timestamp": "2026-01-30T22:34:22.032223",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Estonia_analysis.json",
+      "gaps_critical": 2,
+      "gaps_high": 3,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Eswatini",
+      "timestamp": "2026-01-30T22:40:23.405143",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Eswatini_analysis.json",
+      "gaps_critical": 3,
+      "gaps_high": 3,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Ethiopia",
+      "timestamp": "2026-01-30T22:46:30.485322",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Ethiopia_analysis.json",
+      "gaps_critical": 2,
+      "gaps_high": 3,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Fiji",
+      "timestamp": "2026-01-30T22:52:19.598836",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Fiji_analysis.json",
+      "gaps_critical": 2,
+      "gaps_high": 3,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Finland",
+      "timestamp": "2026-01-30T22:58:29.460233",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Finland_analysis.json",
+      "gaps_critical": 3,
+      "gaps_high": 3,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "France",
+      "timestamp": "2026-01-30T23:05:23.298181",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\France_analysis.json",
+      "gaps_critical": 5,
+      "gaps_high": 2,
+      "sources": 2
+    },
+    {
+      "jurisdiction": "Gabon",
+      "timestamp": "2026-01-30T23:11:30.239433",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Gabon_analysis.json",
+      "gaps_critical": 3,
+      "gaps_high": 3,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Gambia",
+      "timestamp": "2026-01-30T23:18:16.227485",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Gambia_analysis.json",
+      "gaps_critical": 3,
+      "gaps_high": 3,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Georgia",
+      "timestamp": "2026-01-30T23:23:42.182552",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Georgia_analysis.json",
+      "gaps_critical": 3,
+      "gaps_high": 3,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Germany",
+      "timestamp": "2026-01-30T23:29:37.538188",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Germany_analysis.json",
+      "gaps_critical": 2,
+      "gaps_high": 3,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Ghana",
+      "timestamp": "2026-01-30T23:35:22.984191",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Ghana_analysis.json",
+      "gaps_critical": 2,
+      "gaps_high": 3,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Greece",
+      "timestamp": "2026-01-30T23:40:57.731281",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Greece_analysis.json",
+      "gaps_critical": 3,
+      "gaps_high": 3,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Grenada",
+      "timestamp": "2026-01-30T23:46:25.949235",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Grenada_analysis.json",
+      "gaps_critical": 3,
+      "gaps_high": 2,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Guatemala",
+      "timestamp": "2026-01-30T23:52:00.350556",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Guatemala_analysis.json",
+      "gaps_critical": 2,
+      "gaps_high": 3,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Guinea",
+      "timestamp": "2026-01-30T23:56:25.625248",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Guinea_analysis.json",
+      "gaps_critical": 2,
+      "gaps_high": 2,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Guinea-Bissau",
+      "timestamp": "2026-01-31T00:02:08.198481",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Guinea-Bissau_analysis.json",
+      "gaps_critical": 3,
+      "gaps_high": 3,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Guyana",
+      "timestamp": "2026-01-31T00:08:01.202013",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Guyana_analysis.json",
+      "gaps_critical": 3,
+      "gaps_high": 3,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Haiti",
+      "timestamp": "2026-01-31T00:15:06.819866",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Haiti_analysis.json",
+      "gaps_critical": 2,
+      "gaps_high": 3,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Honduras",
+      "timestamp": "2026-01-31T00:21:20.313833",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Honduras_analysis.json",
+      "gaps_critical": 3,
+      "gaps_high": 2,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Hungary",
+      "timestamp": "2026-01-31T00:27:47.086994",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Hungary_analysis.json",
+      "gaps_critical": 4,
+      "gaps_high": 4,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Iceland",
+      "timestamp": "2026-01-31T00:33:55.120248",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Iceland_analysis.json",
+      "gaps_critical": 3,
+      "gaps_high": 3,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "India",
+      "timestamp": "2026-01-31T00:35:15.929443",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\India_analysis.json",
+      "gaps_critical": 0,
+      "gaps_high": 0,
+      "sources": 2
+    },
+    {
+      "jurisdiction": "Indonesia",
+      "timestamp": "2026-01-31T00:40:22.546994",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Indonesia_analysis.json",
+      "gaps_critical": 2,
+      "gaps_high": 2,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Iran",
+      "timestamp": "2026-01-31T00:45:10.816896",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Iran_analysis.json",
+      "gaps_critical": 4,
+      "gaps_high": 2,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Iraq",
+      "timestamp": "2026-01-31T00:49:39.663947",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Iraq_analysis.json",
+      "gaps_critical": 2,
+      "gaps_high": 2,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Ireland",
+      "timestamp": "2026-01-31T05:49:17.836273",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Ireland_analysis.json",
+      "gaps_critical": 4,
+      "gaps_high": 3,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Israel",
+      "timestamp": "2026-01-31T05:54:31.027878",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Israel_analysis.json",
+      "gaps_critical": 3,
+      "gaps_high": 2,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Italy",
+      "timestamp": "2026-01-31T06:01:06.376397",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Italy_analysis.json",
+      "gaps_critical": 2,
+      "gaps_high": 3,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Jamaica",
+      "timestamp": "2026-01-31T06:07:16.268474",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Jamaica_analysis.json",
+      "gaps_critical": 3,
+      "gaps_high": 3,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Japan",
+      "timestamp": "2026-01-31T06:13:04.702472",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Japan_analysis.json",
+      "gaps_critical": 3,
+      "gaps_high": 2,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Jordan",
+      "timestamp": "2026-01-31T06:19:12.607337",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Jordan_analysis.json",
+      "gaps_critical": 3,
+      "gaps_high": 3,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Kazakhstan",
+      "timestamp": "2026-01-31T06:25:00.645185",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Kazakhstan_analysis.json",
+      "gaps_critical": 3,
+      "gaps_high": 2,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Kenya",
+      "timestamp": "2026-01-31T07:00:57.015934",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Kenya_analysis.json",
+      "gaps_critical": 2,
+      "gaps_high": 4,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Kiribati",
+      "timestamp": "2026-01-31T07:07:24.159199",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Kiribati_analysis.json",
+      "gaps_critical": 3,
+      "gaps_high": 2,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Kuwait",
+      "timestamp": "2026-01-31T07:12:59.098456",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Kuwait_analysis.json",
+      "gaps_critical": 2,
+      "gaps_high": 4,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Kyrgyzstan",
+      "timestamp": "2026-01-31T10:57:12.056961",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Kyrgyzstan_analysis.json",
+      "gaps_critical": 3,
+      "gaps_high": 3,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Laos",
+      "timestamp": "2026-01-31T11:03:17.169232",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Laos_analysis.json",
+      "gaps_critical": 2,
+      "gaps_high": 3,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Latvia",
+      "timestamp": "2026-01-31T11:08:47.760285",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Latvia_analysis.json",
+      "gaps_critical": 3,
+      "gaps_high": 2,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Lebanon",
+      "timestamp": "2026-02-06T00:00:34.624829",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Lebanon_analysis.json",
+      "gaps_critical": 3,
+      "gaps_high": 3,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Lesotho",
+      "timestamp": "2026-02-06T00:06:51.878524",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Lesotho_analysis.json",
+      "gaps_critical": 3,
+      "gaps_high": 2,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Liberia",
+      "timestamp": "2026-02-06T00:12:08.270530",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Liberia_analysis.json",
+      "gaps_critical": 2,
+      "gaps_high": 3,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Libya",
+      "timestamp": "2026-02-06T00:16:00.847653",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Libya_analysis.json",
+      "gaps_critical": 3,
+      "gaps_high": 2,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Liechtenstein",
+      "timestamp": "2026-02-06T00:16:55.002243",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Liechtenstein_analysis.json",
+      "gaps_critical": 0,
+      "gaps_high": 0,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Lithuania",
+      "timestamp": "2026-02-06T00:22:55.615966",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Lithuania_analysis.json",
+      "gaps_critical": 3,
+      "gaps_high": 3,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Luxembourg",
+      "timestamp": "2026-02-06T00:29:58.421570",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Luxembourg_analysis.json",
+      "gaps_critical": 3,
+      "gaps_high": 3,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Madagascar",
+      "timestamp": "2026-02-06T00:36:02.524284",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Madagascar_analysis.json",
+      "gaps_critical": 2,
+      "gaps_high": 3,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Malawi",
+      "timestamp": "2026-02-06T00:41:27.831452",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Malawi_analysis.json",
+      "gaps_critical": 3,
+      "gaps_high": 3,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Malaysia",
+      "timestamp": "2026-02-06T00:47:45.784072",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Malaysia_analysis.json",
+      "gaps_critical": 3,
+      "gaps_high": 3,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Maldives",
+      "timestamp": "2026-02-06T00:52:42.048205",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Maldives_analysis.json",
+      "gaps_critical": 2,
+      "gaps_high": 3,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Mali",
+      "timestamp": "2026-02-06T00:58:37.818642",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Mali_analysis.json",
+      "gaps_critical": 3,
+      "gaps_high": 3,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Malta",
+      "timestamp": "2026-02-06T01:04:32.014724",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Malta_analysis.json",
+      "gaps_critical": 3,
+      "gaps_high": 3,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Marshall Islands",
+      "timestamp": "2026-02-06T01:11:07.494808",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Marshall_Islands_analysis.json",
+      "gaps_critical": 3,
+      "gaps_high": 3,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Mauritania",
+      "timestamp": "2026-02-06T01:16:08.698780",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Mauritania_analysis.json",
+      "gaps_critical": 2,
+      "gaps_high": 3,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Mauritius",
+      "timestamp": "2026-02-06T02:13:10.551676",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Mauritius_analysis.json",
+      "gaps_critical": 3,
+      "gaps_high": 3,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Mexico",
+      "timestamp": "2026-02-06T02:14:29.052714",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Mexico_analysis.json",
+      "gaps_critical": 0,
+      "gaps_high": 0,
+      "sources": 1
+    },
+    {
+      "jurisdiction": "Micronesia",
+      "timestamp": "2026-02-06T03:32:06.189563",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Micronesia_analysis.json",
+      "gaps_critical": 3,
+      "gaps_high": 3,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Moldova",
+      "timestamp": "2026-02-06T03:37:43.130694",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Moldova_analysis.json",
+      "gaps_critical": 3,
+      "gaps_high": 3,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Monaco",
+      "timestamp": "2026-02-06T03:44:32.992755",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Monaco_analysis.json",
+      "gaps_critical": 3,
+      "gaps_high": 3,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Mongolia",
+      "timestamp": "2026-02-06T03:51:46.818600",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Mongolia_analysis.json",
+      "gaps_critical": 2,
+      "gaps_high": 3,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Montenegro",
+      "timestamp": "2026-02-06T08:30:05.086854",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Montenegro_analysis.json",
+      "gaps_critical": 3,
+      "gaps_high": 3,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Morocco",
+      "timestamp": "2026-02-06T08:30:45.688896",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Morocco_analysis.json",
+      "gaps_critical": 0,
+      "gaps_high": 0,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Mozambique",
+      "timestamp": "2026-02-06T08:30:55.037743",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Mozambique_analysis.json",
+      "gaps_critical": 0,
+      "gaps_high": 0,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Myanmar",
+      "timestamp": "2026-02-06T08:31:14.686551",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Myanmar_analysis.json",
+      "gaps_critical": 0,
+      "gaps_high": 0,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Namibia",
+      "timestamp": "2026-02-06T08:31:31.964654",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Namibia_analysis.json",
+      "gaps_critical": 0,
+      "gaps_high": 0,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Nauru",
+      "timestamp": "2026-02-06T08:31:47.545224",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Nauru_analysis.json",
+      "gaps_critical": 0,
+      "gaps_high": 0,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Nepal",
+      "timestamp": "2026-02-06T08:32:05.072525",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Nepal_analysis.json",
+      "gaps_critical": 0,
+      "gaps_high": 0,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Netherlands",
+      "timestamp": "2026-02-06T08:32:23.616022",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Netherlands_analysis.json",
+      "gaps_critical": 0,
+      "gaps_high": 0,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "New Zealand",
+      "timestamp": "2026-02-06T08:32:40.424886",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\New_Zealand_analysis.json",
+      "gaps_critical": 0,
+      "gaps_high": 0,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Nicaragua",
+      "timestamp": "2026-02-06T08:32:55.714659",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Nicaragua_analysis.json",
+      "gaps_critical": 0,
+      "gaps_high": 0,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Niger",
+      "timestamp": "2026-02-06T08:33:13.773135",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Niger_analysis.json",
+      "gaps_critical": 0,
+      "gaps_high": 0,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Nigeria",
+      "timestamp": "2026-02-06T08:33:50.636880",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Nigeria_analysis.json",
+      "gaps_critical": 0,
+      "gaps_high": 0,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "North Korea",
+      "timestamp": "2026-02-06T08:35:30.903988",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\North_Korea_analysis.json",
+      "gaps_critical": 0,
+      "gaps_high": 0,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "North Macedonia",
+      "timestamp": "2026-02-06T08:35:51.090637",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\North_Macedonia_analysis.json",
+      "gaps_critical": 0,
+      "gaps_high": 0,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Norway",
+      "timestamp": "2026-02-06T08:36:26.333480",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Norway_analysis.json",
+      "gaps_critical": 0,
+      "gaps_high": 0,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Oman",
+      "timestamp": "2026-02-06T08:36:38.812216",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Oman_analysis.json",
+      "gaps_critical": 0,
+      "gaps_high": 0,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Pakistan",
+      "timestamp": "2026-02-06T08:37:10.572062",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Pakistan_analysis.json",
+      "gaps_critical": 0,
+      "gaps_high": 0,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Palau",
+      "timestamp": "2026-02-06T08:37:31.584949",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Palau_analysis.json",
+      "gaps_critical": 0,
+      "gaps_high": 0,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Palestine",
+      "timestamp": "2026-02-06T08:37:45.005344",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Palestine_analysis.json",
+      "gaps_critical": 0,
+      "gaps_high": 0,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Panama",
+      "timestamp": "2026-02-06T08:38:03.331444",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Panama_analysis.json",
+      "gaps_critical": 0,
+      "gaps_high": 0,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Papua New Guinea",
+      "timestamp": "2026-02-06T08:38:11.015057",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Papua_New_Guinea_analysis.json",
+      "gaps_critical": 0,
+      "gaps_high": 0,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Paraguay",
+      "timestamp": "2026-02-06T08:38:33.666007",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Paraguay_analysis.json",
+      "gaps_critical": 0,
+      "gaps_high": 0,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Peru",
+      "timestamp": "2026-02-06T08:38:51.904549",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Peru_analysis.json",
+      "gaps_critical": 0,
+      "gaps_high": 0,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Philippines",
+      "timestamp": "2026-02-06T08:39:22.136505",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Philippines_analysis.json",
+      "gaps_critical": 0,
+      "gaps_high": 0,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Poland",
+      "timestamp": "2026-02-06T08:39:40.283276",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Poland_analysis.json",
+      "gaps_critical": 0,
+      "gaps_high": 0,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Portugal",
+      "timestamp": "2026-02-06T08:39:58.180631",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Portugal_analysis.json",
+      "gaps_critical": 0,
+      "gaps_high": 0,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Qatar",
+      "timestamp": "2026-02-06T08:40:12.208523",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Qatar_analysis.json",
+      "gaps_critical": 0,
+      "gaps_high": 0,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Romania",
+      "timestamp": "2026-02-06T08:40:29.893522",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Romania_analysis.json",
+      "gaps_critical": 0,
+      "gaps_high": 0,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Russia",
+      "timestamp": "2026-02-06T08:40:45.009614",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Russia_analysis.json",
+      "gaps_critical": 0,
+      "gaps_high": 0,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Rwanda",
+      "timestamp": "2026-02-06T08:40:54.707240",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Rwanda_analysis.json",
+      "gaps_critical": 0,
+      "gaps_high": 0,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Saint Kitts and Nevis",
+      "timestamp": "2026-02-06T08:41:12.980826",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Saint_Kitts_and_Nevis_analysis.json",
+      "gaps_critical": 0,
+      "gaps_high": 0,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Saint Lucia",
+      "timestamp": "2026-02-06T08:41:23.934848",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Saint_Lucia_analysis.json",
+      "gaps_critical": 0,
+      "gaps_high": 0,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Saint Vincent and the Grenadines",
+      "timestamp": "2026-02-06T08:41:44.832754",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Saint_Vincent_and_the_Grenadines_analysis.json",
+      "gaps_critical": 0,
+      "gaps_high": 0,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Samoa",
+      "timestamp": "2026-02-06T08:42:10.065177",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Samoa_analysis.json",
+      "gaps_critical": 0,
+      "gaps_high": 0,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "San Marino",
+      "timestamp": "2026-02-06T08:42:16.135319",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\San_Marino_analysis.json",
+      "gaps_critical": 0,
+      "gaps_high": 0,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Sao Tome and Principe",
+      "timestamp": "2026-02-06T08:42:42.163732",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Sao_Tome_and_Principe_analysis.json",
+      "gaps_critical": 0,
+      "gaps_high": 0,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Saudi Arabia",
+      "timestamp": "2026-02-06T08:42:59.947904",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Saudi_Arabia_analysis.json",
+      "gaps_critical": 0,
+      "gaps_high": 0,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Senegal",
+      "timestamp": "2026-02-06T08:43:06.574348",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Senegal_analysis.json",
+      "gaps_critical": 0,
+      "gaps_high": 0,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Serbia",
+      "timestamp": "2026-02-06T08:43:22.888172",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Serbia_analysis.json",
+      "gaps_critical": 0,
+      "gaps_high": 0,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Seychelles",
+      "timestamp": "2026-02-06T08:43:48.638581",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Seychelles_analysis.json",
+      "gaps_critical": 0,
+      "gaps_high": 0,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Sierra Leone",
+      "timestamp": "2026-02-06T08:44:04.439848",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Sierra_Leone_analysis.json",
+      "gaps_critical": 0,
+      "gaps_high": 0,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Singapore",
+      "timestamp": "2026-02-06T08:44:11.082984",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Singapore_analysis.json",
+      "gaps_critical": 0,
+      "gaps_high": 0,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Slovakia",
+      "timestamp": "2026-02-06T08:44:22.719844",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Slovakia_analysis.json",
+      "gaps_critical": 0,
+      "gaps_high": 0,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Slovenia",
+      "timestamp": "2026-02-06T08:44:38.069001",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Slovenia_analysis.json",
+      "gaps_critical": 0,
+      "gaps_high": 0,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Solomon Islands",
+      "timestamp": "2026-02-06T08:44:47.653352",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Solomon_Islands_analysis.json",
+      "gaps_critical": 0,
+      "gaps_high": 0,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Somalia",
+      "timestamp": "2026-02-06T08:45:01.070811",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Somalia_analysis.json",
+      "gaps_critical": 0,
+      "gaps_high": 0,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "South Africa",
+      "timestamp": "2026-02-06T08:45:17.173284",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\South_Africa_analysis.json",
+      "gaps_critical": 0,
+      "gaps_high": 0,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "South Korea",
+      "timestamp": "2026-02-06T08:45:27.838152",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\South_Korea_analysis.json",
+      "gaps_critical": 0,
+      "gaps_high": 0,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "South Sudan",
+      "timestamp": "2026-02-06T08:45:42.294797",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\South_Sudan_analysis.json",
+      "gaps_critical": 0,
+      "gaps_high": 0,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Spain",
+      "timestamp": "2026-02-06T08:46:04.569858",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Spain_analysis.json",
+      "gaps_critical": 0,
+      "gaps_high": 0,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Sri Lanka",
+      "timestamp": "2026-02-06T08:46:21.317200",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Sri_Lanka_analysis.json",
+      "gaps_critical": 0,
+      "gaps_high": 0,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Sudan",
+      "timestamp": "2026-02-06T08:46:27.246634",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Sudan_analysis.json",
+      "gaps_critical": 0,
+      "gaps_high": 0,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Suriname",
+      "timestamp": "2026-02-06T08:46:38.005363",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Suriname_analysis.json",
+      "gaps_critical": 0,
+      "gaps_high": 0,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Sweden",
+      "timestamp": "2026-02-06T08:46:51.806180",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Sweden_analysis.json",
+      "gaps_critical": 0,
+      "gaps_high": 0,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Switzerland",
+      "timestamp": "2026-02-06T08:47:07.725414",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Switzerland_analysis.json",
+      "gaps_critical": 0,
+      "gaps_high": 0,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Syria",
+      "timestamp": "2026-02-06T08:47:24.488436",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Syria_analysis.json",
+      "gaps_critical": 0,
+      "gaps_high": 0,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Taiwan",
+      "timestamp": "2026-02-06T08:47:33.919245",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Taiwan_analysis.json",
+      "gaps_critical": 0,
+      "gaps_high": 0,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Tajikistan",
+      "timestamp": "2026-02-06T08:47:49.206638",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Tajikistan_analysis.json",
+      "gaps_critical": 0,
+      "gaps_high": 0,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Tanzania",
+      "timestamp": "2026-02-06T08:49:27.326907",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Tanzania_analysis.json",
+      "gaps_critical": 2,
+      "gaps_high": 3,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Thailand",
+      "timestamp": "2026-02-06T08:49:52.285109",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Thailand_analysis.json",
+      "gaps_critical": 0,
+      "gaps_high": 0,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Timor-Leste",
+      "timestamp": "2026-02-06T08:50:22.382150",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Timor-Leste_analysis.json",
+      "gaps_critical": 0,
+      "gaps_high": 0,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Togo",
+      "timestamp": "2026-02-06T08:50:41.204964",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Togo_analysis.json",
+      "gaps_critical": 0,
+      "gaps_high": 0,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Tonga",
+      "timestamp": "2026-02-06T08:51:00.401396",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Tonga_analysis.json",
+      "gaps_critical": 0,
+      "gaps_high": 0,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Trinidad and Tobago",
+      "timestamp": "2026-02-06T08:51:07.459988",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Trinidad_and_Tobago_analysis.json",
+      "gaps_critical": 0,
+      "gaps_high": 0,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Tunisia",
+      "timestamp": "2026-02-06T08:51:34.854020",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Tunisia_analysis.json",
+      "gaps_critical": 0,
+      "gaps_high": 0,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Turkey",
+      "timestamp": "2026-02-06T08:51:49.219468",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Turkey_analysis.json",
+      "gaps_critical": 0,
+      "gaps_high": 0,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Turkmenistan",
+      "timestamp": "2026-02-06T08:52:00.458713",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Turkmenistan_analysis.json",
+      "gaps_critical": 0,
+      "gaps_high": 0,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Tuvalu",
+      "timestamp": "2026-02-06T08:52:06.332380",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Tuvalu_analysis.json",
+      "gaps_critical": 0,
+      "gaps_high": 0,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Uganda",
+      "timestamp": "2026-02-06T08:52:24.035008",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Uganda_analysis.json",
+      "gaps_critical": 0,
+      "gaps_high": 0,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Ukraine",
+      "timestamp": "2026-02-06T08:52:34.691744",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Ukraine_analysis.json",
+      "gaps_critical": 0,
+      "gaps_high": 0,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "United Arab Emirates",
+      "timestamp": "2026-02-06T08:52:57.593751",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\United_Arab_Emirates_analysis.json",
+      "gaps_critical": 0,
+      "gaps_high": 0,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Uruguay",
+      "timestamp": "2026-02-06T08:53:08.946733",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Uruguay_analysis.json",
+      "gaps_critical": 0,
+      "gaps_high": 0,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Uzbekistan",
+      "timestamp": "2026-02-06T08:53:20.076587",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Uzbekistan_analysis.json",
+      "gaps_critical": 0,
+      "gaps_high": 0,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Vanuatu",
+      "timestamp": "2026-02-06T08:53:33.853066",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Vanuatu_analysis.json",
+      "gaps_critical": 0,
+      "gaps_high": 0,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Vatican City",
+      "timestamp": "2026-02-06T08:53:39.842660",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Vatican_City_analysis.json",
+      "gaps_critical": 0,
+      "gaps_high": 0,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Venezuela",
+      "timestamp": "2026-02-06T08:53:51.193935",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Venezuela_analysis.json",
+      "gaps_critical": 0,
+      "gaps_high": 0,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Vietnam",
+      "timestamp": "2026-02-06T08:54:03.793253",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Vietnam_analysis.json",
+      "gaps_critical": 0,
+      "gaps_high": 0,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Yemen",
+      "timestamp": "2026-02-06T08:54:11.456449",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Yemen_analysis.json",
+      "gaps_critical": 0,
+      "gaps_high": 0,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Zambia",
+      "timestamp": "2026-02-06T08:54:27.141565",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Zambia_analysis.json",
+      "gaps_critical": 0,
+      "gaps_high": 0,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Zimbabwe",
+      "timestamp": "2026-02-06T08:54:37.952580",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Zimbabwe_analysis.json",
+      "gaps_critical": 0,
+      "gaps_high": 0,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Hong Kong",
+      "timestamp": "2026-02-06T08:54:58.150826",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Hong_Kong_analysis.json",
+      "gaps_critical": 0,
+      "gaps_high": 0,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Macau",
+      "timestamp": "2026-02-06T08:55:05.324346",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Macau_analysis.json",
+      "gaps_critical": 0,
+      "gaps_high": 0,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Puerto Rico",
+      "timestamp": "2026-02-06T08:55:16.461300",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Puerto_Rico_analysis.json",
+      "gaps_critical": 0,
+      "gaps_high": 0,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Guam",
+      "timestamp": "2026-02-06T08:55:36.380375",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Guam_analysis.json",
+      "gaps_critical": 0,
+      "gaps_high": 0,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "American Samoa",
+      "timestamp": "2026-02-06T08:55:45.039056",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\American_Samoa_analysis.json",
+      "gaps_critical": 0,
+      "gaps_high": 0,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Northern Mariana Islands",
+      "timestamp": "2026-02-06T08:56:00.027860",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Northern_Mariana_Islands_analysis.json",
+      "gaps_critical": 0,
+      "gaps_high": 0,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "US Virgin Islands",
+      "timestamp": "2026-02-06T08:56:13.566561",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\US_Virgin_Islands_analysis.json",
+      "gaps_critical": 0,
+      "gaps_high": 0,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "British Virgin Islands",
+      "timestamp": "2026-02-06T08:56:29.108965",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\British_Virgin_Islands_analysis.json",
+      "gaps_critical": 0,
+      "gaps_high": 0,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Cayman Islands",
+      "timestamp": "2026-02-07T10:18:20.679713",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Cayman_Islands_analysis.json",
+      "gaps_critical": 2,
+      "gaps_high": 4,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Bermuda",
+      "timestamp": "2026-02-07T10:23:11.557743",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Bermuda_analysis.json",
+      "gaps_critical": 3,
+      "gaps_high": 3,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Gibraltar",
+      "timestamp": "2026-02-07T10:28:49.650545",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Gibraltar_analysis.json",
+      "gaps_critical": 3,
+      "gaps_high": 3,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Falkland Islands",
+      "timestamp": "2026-02-07T10:35:55.313178",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Falkland_Islands_analysis.json",
+      "gaps_critical": 3,
+      "gaps_high": 3,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Greenland",
+      "timestamp": "2026-02-07T10:41:22.094495",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Greenland_analysis.json",
+      "gaps_critical": 3,
+      "gaps_high": 2,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Faroe Islands",
+      "timestamp": "2026-02-11T20:48:28.197126",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Faroe_Islands_analysis.json",
+      "gaps_critical": 3,
+      "gaps_high": 3,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Isle of Man",
+      "timestamp": "2026-02-11T20:53:21.072294",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Isle_of_Man_analysis.json",
+      "gaps_critical": 3,
+      "gaps_high": 3,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Jersey",
+      "timestamp": "2026-02-11T20:57:23.402500",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Jersey_analysis.json",
+      "gaps_critical": 2,
+      "gaps_high": 4,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Guernsey",
+      "timestamp": "2026-02-11T21:01:52.048546",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Guernsey_analysis.json",
+      "gaps_critical": 3,
+      "gaps_high": 3,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Aruba",
+      "timestamp": "2026-02-11T21:15:43.252064",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Aruba_analysis.json",
+      "gaps_critical": 3,
+      "gaps_high": 2,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Curacao",
+      "timestamp": "2026-02-11T21:20:11.670441",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Curacao_analysis.json",
+      "gaps_critical": 3,
+      "gaps_high": 2,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Sint Maarten",
+      "timestamp": "2026-02-11T21:25:00.970022",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Sint_Maarten_analysis.json",
+      "gaps_critical": 3,
+      "gaps_high": 3,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "French Polynesia",
+      "timestamp": "2026-02-12T12:59:44.373042",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\French_Polynesia_analysis.json",
+      "gaps_critical": 2,
+      "gaps_high": 3,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "New Caledonia",
+      "timestamp": "2026-02-12T13:06:52.567073",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\New_Caledonia_analysis.json",
+      "gaps_critical": 3,
+      "gaps_high": 2,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Cook Islands",
+      "timestamp": "2026-02-12T13:15:20.363476",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Cook_Islands_analysis.json",
+      "gaps_critical": 3,
+      "gaps_high": 2,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Niue",
+      "timestamp": "2026-02-12T13:20:23.693363",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Niue_analysis.json",
+      "gaps_critical": 2,
+      "gaps_high": 2,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Tokelau",
+      "timestamp": "2026-02-12T13:26:17.332739",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Tokelau_analysis.json",
+      "gaps_critical": 3,
+      "gaps_high": 3,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Anguilla",
+      "timestamp": "2026-02-12T13:32:28.973206",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Anguilla_analysis.json",
+      "gaps_critical": 3,
+      "gaps_high": 3,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Montserrat",
+      "timestamp": "2026-02-12T13:38:35.817551",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Montserrat_analysis.json",
+      "gaps_critical": 3,
+      "gaps_high": 3,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Turks and Caicos Islands",
+      "timestamp": "2026-02-12T13:45:02.307333",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Turks_and_Caicos_Islands_analysis.json",
+      "gaps_critical": 3,
+      "gaps_high": 3,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Saint Helena",
+      "timestamp": "2026-02-12T13:51:29.075703",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Saint_Helena_analysis.json",
+      "gaps_critical": 3,
+      "gaps_high": 2,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Ascension Island",
+      "timestamp": "2026-02-12T13:57:28.996939",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Ascension_Island_analysis.json",
+      "gaps_critical": 3,
+      "gaps_high": 3,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Tristan da Cunha",
+      "timestamp": "2026-02-12T14:03:10.393616",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Tristan_da_Cunha_analysis.json",
+      "gaps_critical": 2,
+      "gaps_high": 3,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Pitcairn Islands",
+      "timestamp": "2026-02-12T14:09:44.771827",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Pitcairn_Islands_analysis.json",
+      "gaps_critical": 3,
+      "gaps_high": 3,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "South Georgia and the South Sandwich Islands",
+      "timestamp": "2026-02-12T14:15:55.482346",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\South_Georgia_and_the_South_Sandwich_Islands_analysis.json",
+      "gaps_critical": 3,
+      "gaps_high": 3,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "British Indian Ocean Territory",
+      "timestamp": "2026-02-12T16:21:24.381370",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\British_Indian_Ocean_Territory_analysis.json",
+      "gaps_critical": 3,
+      "gaps_high": 3,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Saint Pierre and Miquelon",
+      "timestamp": "2026-02-12T16:27:28.750633",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Saint_Pierre_and_Miquelon_analysis.json",
+      "gaps_critical": 3,
+      "gaps_high": 3,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Wallis and Futuna",
+      "timestamp": "2026-02-12T16:33:00.911546",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Wallis_and_Futuna_analysis.json",
+      "gaps_critical": 2,
+      "gaps_high": 3,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "French Guiana",
+      "timestamp": "2026-02-12T16:39:02.350494",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\French_Guiana_analysis.json",
+      "gaps_critical": 3,
+      "gaps_high": 3,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Guadeloupe",
+      "timestamp": "2026-02-12T16:44:48.260046",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Guadeloupe_analysis.json",
+      "gaps_critical": 3,
+      "gaps_high": 3,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Martinique",
+      "timestamp": "2026-02-12T16:50:42.168599",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Martinique_analysis.json",
+      "gaps_critical": 2,
+      "gaps_high": 3,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Mayotte",
+      "timestamp": "2026-02-12T16:58:20.323747",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Mayotte_analysis.json",
+      "gaps_critical": 4,
+      "gaps_high": 3,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Reunion",
+      "timestamp": "2026-02-12T17:05:39.467090",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Reunion_analysis.json",
+      "gaps_critical": 3,
+      "gaps_high": 4,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Saint Barthelemy",
+      "timestamp": "2026-02-12T17:11:54.139987",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Saint_Barthelemy_analysis.json",
+      "gaps_critical": 3,
+      "gaps_high": 2,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Saint Martin",
+      "timestamp": "2026-02-12T17:18:40.774932",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Saint_Martin_analysis.json",
+      "gaps_critical": 3,
+      "gaps_high": 2,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Svalbard and Jan Mayen",
+      "timestamp": "2026-02-12T17:23:58.872339",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Svalbard_and_Jan_Mayen_analysis.json",
+      "gaps_critical": 2,
+      "gaps_high": 3,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Aland Islands",
+      "timestamp": "2026-02-12T17:30:13.637887",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Aland_Islands_analysis.json",
+      "gaps_critical": 2,
+      "gaps_high": 3,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Madeira",
+      "timestamp": "2026-02-12T17:35:35.920745",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Madeira_analysis.json",
+      "gaps_critical": 3,
+      "gaps_high": 2,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Azores",
+      "timestamp": "2026-02-12T17:40:59.088779",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Azores_analysis.json",
+      "gaps_critical": 3,
+      "gaps_high": 2,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Canary Islands",
+      "timestamp": "2026-02-12T17:47:32.541894",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Canary_Islands_analysis.json",
+      "gaps_critical": 3,
+      "gaps_high": 3,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Ceuta",
+      "timestamp": "2026-02-12T17:54:12.130984",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Ceuta_analysis.json",
+      "gaps_critical": 3,
+      "gaps_high": 2,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Melilla",
+      "timestamp": "2026-02-12T18:01:13.829239",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Melilla_analysis.json",
+      "gaps_critical": 3,
+      "gaps_high": 4,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Northern Cyprus",
+      "timestamp": "2026-02-12T18:08:17.144140",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Northern_Cyprus_analysis.json",
+      "gaps_critical": 3,
+      "gaps_high": 3,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Abkhazia",
+      "timestamp": "2026-02-12T18:13:45.007606",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Abkhazia_analysis.json",
+      "gaps_critical": 3,
+      "gaps_high": 3,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "South Ossetia",
+      "timestamp": "2026-02-12T18:19:41.352961",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\South_Ossetia_analysis.json",
+      "gaps_critical": 2,
+      "gaps_high": 3,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Transnistria",
+      "timestamp": "2026-02-12T18:26:22.752565",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Transnistria_analysis.json",
+      "gaps_critical": 3,
+      "gaps_high": 3,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Artsakh",
+      "timestamp": "2026-02-12T18:32:30.577981",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Artsakh_analysis.json",
+      "gaps_critical": 4,
+      "gaps_high": 3,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Somaliland",
+      "timestamp": "2026-02-12T18:38:26.497676",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Somaliland_analysis.json",
+      "gaps_critical": 4,
+      "gaps_high": 3,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Western Sahara",
+      "timestamp": "2026-02-12T18:44:29.230778",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Western_Sahara_analysis.json",
+      "gaps_critical": 2,
+      "gaps_high": 3,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Kosovo",
+      "timestamp": "2026-02-12T18:50:47.281628",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Kosovo_analysis.json",
+      "gaps_critical": 3,
+      "gaps_high": 3,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Palestinian Territories",
+      "timestamp": "2026-02-12T18:56:05.590056",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Palestinian_Territories_analysis.json",
+      "gaps_critical": 2,
+      "gaps_high": 3,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "Gaza Strip",
+      "timestamp": "2026-02-12T19:02:51.042682",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\Gaza_Strip_analysis.json",
+      "gaps_critical": 3,
+      "gaps_high": 3,
+      "sources": 0
+    },
+    {
+      "jurisdiction": "West Bank",
+      "timestamp": "2026-02-12T19:08:56.301631",
+      "result_file": "stablecoin_analysis_all_jurisdictions\\West_Bank_analysis.json",
+      "gaps_critical": 3,
+      "gaps_high": 4,
+      "sources": 0
+    }
+  ],
+  "failed": [],
+  "start_time": "2026-01-30T04:44:19.652995",
+  "last_update": "2026-02-12T19:08:56.301715"
+}

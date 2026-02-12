@@ -50,7 +50,8 @@ env/
 # ============================================
 # Analysis output (large files)
 # ============================================
-stablecoin_analysis_all_jurisdictions/
+# Keep stablecoin_analysis_all_jurisdictions/ - it's the knowledge base!
+# stablecoin_analysis_all_jurisdictions/
 monitoring_data/
 regulatory_snapshots/
 revisions/

@@ -1,0 +1,18 @@
+{
+  "jurisdiction": "US Virgin Islands",
+  "timestamp": "2026-02-06T08:56:13.530888",
+  "regulatory_summary": "Regulatory Research Summary\n\nNote: Limited research results were obtained. This may be due to:\n- API key issues (check your .env file)\n- Rate limiting\n- Network connectivity issues\n\nQuery: stablecoin regulation US Virgin Islands\n\nThe agent will proceed with analysis based on available information and LLM knowledge.\n",
+  "gap_analysis": {},
+  "policy_updates": {
+    "timestamp": "2026-02-06T08:56:13.449198",
+    "proposed_updates": [],
+    "new_policies": [],
+    "modified_policies": [],
+    "update_rationale": {},
+    "implementation_priority": {}
+  },
+  "sources_count": 0,
+  "sources": [],
+  "has_policy_implementation": false,
+  "report": "# Regulatory Analysis Report\nGenerated: 2026-02-06 08:56:13\n\n## Regulatory Requirements Summary\n\nRegulatory Research Summary\n\nNote: Limited research results were obtained. This may be due to:\n- API key issues (check your .env file)\n- Rate limiting\n- Network connectivity issues\n\nQuery: stablecoin regulation US Virgin Islands\n\nThe agent will proceed with analysis based on available information and LLM knowledge.\n\n\n\n# Policy Update Summary\nGenerated: 2026-02-06T08:56:13.449198\n\n## Overview\nThis document summarizes proposed updates to company policies and standards based on regulatory gap analysis.\n\n## New Policies Required\n\n## Modified Policies\n\n\n\n\n## Errors\nGap analysis error: Connection error."
+}

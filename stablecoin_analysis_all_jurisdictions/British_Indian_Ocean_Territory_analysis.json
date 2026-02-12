@@ -1,0 +1,163 @@
+{
+  "jurisdiction": "British Indian Ocean Territory",
+  "timestamp": "2026-02-12T16:21:24.289445",
+  "regulatory_summary": "Regulatory Research Summary\n\nNote: Limited research results were obtained. This may be due to:\n- API key issues (check your .env file)\n- Rate limiting\n- Network connectivity issues\n\nQuery: stablecoin regulation British Indian Ocean Territory\n\nThe agent will proceed with analysis based on available information and LLM knowledge.\n",
+  "gap_analysis": {
+    "timestamp": "2026-02-12T14:16:04.709527",
+    "regulatory_areas_analyzed": [],
+    "identified_gaps": [
+      {
+        "gap_id": "GAP-001",
+        "regulatory_requirement": "Legal authorization to issue stablecoins in British Indian Ocean Territory (BIOT)",
+        "current_policy_status": "No policy exists regarding jurisdictional authorization",
+        "gap_description": "Company lacks any policy addressing whether it is legally authorized to operate stablecoin services in BIOT. No jurisdictional risk assessment or licensing framework is documented.",
+        "priority": "critical",
+        "impact": "Operating without proper authorization could result in regulatory enforcement actions, fines, license revocation, and reputational damage.",
+        "recommendation": "Immediately suspend any stablecoin operations in BIOT until legal counsel confirms authorization requirements. Develop a Jurisdictional Authorization Policy that includes: 1) Legal assessment process for new jurisdictions, 2) Licensing requirements documentation, 3) Regulatory engagement protocol."
+      },
+      {
+        "gap_id": "GAP-002",
+        "regulatory_requirement": "Stablecoin reserve requirements and backing asset standards",
+        "current_policy_status": "No documented reserve management or asset backing policies",
+        "gap_description": "No policies exist regarding reserve composition, custody arrangements, audit requirements, or redemption mechanisms for stablecoins.",
+        "priority": "critical",
+        "impact": "Failure to maintain adequate reserves could lead to insolvency, loss of peg, consumer harm, and regulatory sanctions including cease-and-desist orders.",
+        "recommendation": "Develop a Comprehensive Reserve Management Policy including: 1) Minimum reserve requirements (e.g., 100% backing), 2) Permissible asset types and concentration limits, 3) Independent custody arrangements, 4) Monthly attestation/audit requirements, 5) Redemption procedures and timelines."
+      },
+      {
+        "gap_id": "GAP-003",
+        "regulatory_requirement": "Anti-Money Laundering (AML) and Counter-Terrorist Financing (CTF) compliance",
+        "current_policy_status": "No AML/CTF policies documented",
+        "gap_description": "Complete absence of AML/CTF framework including customer due diligence, transaction monitoring, suspicious activity reporting, and record-keeping.",
+        "priority": "critical",
+        "impact": "Significant regulatory penalties, criminal liability for money laundering facilitation, loss of banking relationships, and potential business closure.",
+        "recommendation": "Implement a full AML/CTF Program including: 1) Risk-based customer identification and verification (KYC), 2) Ongoing transaction monitoring, 3) Suspicious activity reporting procedures, 4) Designated compliance officer, 5) Regular employee training, 6) Independent testing program."
+      },
+      {
+        "gap_id": "GAP-004",
+        "regulatory_requirement": "Consumer protection and disclosure requirements",
+        "current_policy_status": "No consumer protection policies exist",
+        "gap_description": "Missing policies on terms of service, risk disclosures, fee transparency, complaint handling, and dispute resolution mechanisms.",
+        "priority": "high",
+        "impact": "Consumer harm, regulatory enforcement actions, class action lawsuits, and erosion of market trust in the stablecoin.",
+        "recommendation": "Develop Consumer Protection Framework including: 1) Clear terms of service and user agreements, 2) Prominent risk disclosures about stablecoin mechanics, 3) Transparent fee schedule, 4) Formal complaint handling process, 5) Dispute resolution mechanism."
+      },
+      {
+        "gap_id": "GAP-005",
+        "regulatory_requirement": "Operational resilience and cybersecurity standards",
+        "current_policy_status": "No documented operational or cybersecurity policies",
+        "gap_description": "Absence of policies addressing system reliability, business continuity, disaster recovery, cybersecurity controls, and incident response.",
+        "priority": "high",
+        "impact": "System failures could disrupt redemption capabilities, compromise customer funds, trigger regulatory intervention, and damage market confidence.",
+        "recommendation": "Establish Operational Resilience Program including: 1) Business continuity and disaster recovery plans, 2) Cybersecurity framework (NIST or equivalent), 3) Incident response protocol, 4) Regular penetration testing, 5) System availability targets and monitoring."
+      },
+      {
+        "gap_id": "GAP-006",
+        "regulatory_requirement": "Governance and risk management framework",
+        "current_policy_status": "No governance or risk management policies documented",
+        "gap_description": "Missing board oversight, compliance function, risk assessment processes, and internal controls framework.",
+        "priority": "high",
+        "impact": "Inadequate oversight could lead to compliance failures, operational risks going unaddressed, and inability to demonstrate sound governance to regulators.",
+        "recommendation": "Implement Governance Framework including: 1) Board-level compliance committee, 2) Chief Compliance Officer appointment, 3) Regular risk assessments, 4) Internal audit function, 5) Whistleblower policy, 6) Code of conduct."
+      },
+      {
+        "gap_id": "GAP-007",
+        "regulatory_requirement": "Reporting and transparency obligations",
+        "current_policy_status": "No reporting or transparency policies exist",
+        "gap_description": "No framework for regulatory reporting, public disclosures, reserve attestations, or financial reporting.",
+        "priority": "medium",
+        "impact": "Regulatory non-compliance, loss of market transparency, reduced investor confidence, and potential enforcement actions for reporting failures.",
+        "recommendation": "Develop Reporting and Transparency Policy including: 1) Regulatory reporting calendar and requirements, 2) Public disclosure of reserve composition and audits, 3) Financial reporting standards, 4) Data retention and retrieval procedures."
+      }
+    ],
+    "compliance_status": {
+      "jurisdictional_authorization": "not_met",
+      "reserve_requirements": "not_met",
+      "aml_ctf_compliance": "not_met",
+      "consumer_protection": "not_met",
+      "operational_resilience": "not_met",
+      "governance_framework": "not_met",
+      "reporting_transparency": "not_met"
+    },
+    "recommendations": [],
+    "priority_levels": {
+      "critical": [
+        {
+          "gap_id": "GAP-001",
+          "regulatory_requirement": "Legal authorization to issue stablecoins in British Indian Ocean Territory (BIOT)",
+          "current_policy_status": "No policy exists regarding jurisdictional authorization",
+          "gap_description": "Company lacks any policy addressing whether it is legally authorized to operate stablecoin services in BIOT. No jurisdictional risk assessment or licensing framework is documented.",
+          "priority": "critical",
+          "impact": "Operating without proper authorization could result in regulatory enforcement actions, fines, license revocation, and reputational damage.",
+          "recommendation": "Immediately suspend any stablecoin operations in BIOT until legal counsel confirms authorization requirements. Develop a Jurisdictional Authorization Policy that includes: 1) Legal assessment process for new jurisdictions, 2) Licensing requirements documentation, 3) Regulatory engagement protocol."
+        },
+        {
+          "gap_id": "GAP-002",
+          "regulatory_requirement": "Stablecoin reserve requirements and backing asset standards",
+          "current_policy_status": "No documented reserve management or asset backing policies",
+          "gap_description": "No policies exist regarding reserve composition, custody arrangements, audit requirements, or redemption mechanisms for stablecoins.",
+          "priority": "critical",
+          "impact": "Failure to maintain adequate reserves could lead to insolvency, loss of peg, consumer harm, and regulatory sanctions including cease-and-desist orders.",
+          "recommendation": "Develop a Comprehensive Reserve Management Policy including: 1) Minimum reserve requirements (e.g., 100% backing), 2) Permissible asset types and concentration limits, 3) Independent custody arrangements, 4) Monthly attestation/audit requirements, 5) Redemption procedures and timelines."
+        },
+        {
+          "gap_id": "GAP-003",
+          "regulatory_requirement": "Anti-Money Laundering (AML) and Counter-Terrorist Financing (CTF) compliance",
+          "current_policy_status": "No AML/CTF policies documented",
+          "gap_description": "Complete absence of AML/CTF framework including customer due diligence, transaction monitoring, suspicious activity reporting, and record-keeping.",
+          "priority": "critical",
+          "impact": "Significant regulatory penalties, criminal liability for money laundering facilitation, loss of banking relationships, and potential business closure.",
+          "recommendation": "Implement a full AML/CTF Program including: 1) Risk-based customer identification and verification (KYC), 2) Ongoing transaction monitoring, 3) Suspicious activity reporting procedures, 4) Designated compliance officer, 5) Regular employee training, 6) Independent testing program."
+        }
+      ],
+      "high": [
+        {
+          "gap_id": "GAP-004",
+          "regulatory_requirement": "Consumer protection and disclosure requirements",
+          "current_policy_status": "No consumer protection policies exist",
+          "gap_description": "Missing policies on terms of service, risk disclosures, fee transparency, complaint handling, and dispute resolution mechanisms.",
+          "priority": "high",
+          "impact": "Consumer harm, regulatory enforcement actions, class action lawsuits, and erosion of market trust in the stablecoin.",
+          "recommendation": "Develop Consumer Protection Framework including: 1) Clear terms of service and user agreements, 2) Prominent risk disclosures about stablecoin mechanics, 3) Transparent fee schedule, 4) Formal complaint handling process, 5) Dispute resolution mechanism."
+        },
+        {
+          "gap_id": "GAP-005",
+          "regulatory_requirement": "Operational resilience and cybersecurity standards",
+          "current_policy_status": "No documented operational or cybersecurity policies",
+          "gap_description": "Absence of policies addressing system reliability, business continuity, disaster recovery, cybersecurity controls, and incident response.",
+          "priority": "high",
+          "impact": "System failures could disrupt redemption capabilities, compromise customer funds, trigger regulatory intervention, and damage market confidence.",
+          "recommendation": "Establish Operational Resilience Program including: 1) Business continuity and disaster recovery plans, 2) Cybersecurity framework (NIST or equivalent), 3) Incident response protocol, 4) Regular penetration testing, 5) System availability targets and monitoring."
+        },
+        {
+          "gap_id": "GAP-006",
+          "regulatory_requirement": "Governance and risk management framework",
+          "current_policy_status": "No governance or risk management policies documented",
+          "gap_description": "Missing board oversight, compliance function, risk assessment processes, and internal controls framework.",
+          "priority": "high",
+          "impact": "Inadequate oversight could lead to compliance failures, operational risks going unaddressed, and inability to demonstrate sound governance to regulators.",
+          "recommendation": "Implement Governance Framework including: 1) Board-level compliance committee, 2) Chief Compliance Officer appointment, 3) Regular risk assessments, 4) Internal audit function, 5) Whistleblower policy, 6) Code of conduct."
+        }
+      ],
+      "medium": [
+        {
+          "gap_id": "GAP-007",
+          "regulatory_requirement": "Reporting and transparency obligations",
+          "current_policy_status": "No reporting or transparency policies exist",
+          "gap_description": "No framework for regulatory reporting, public disclosures, reserve attestations, or financial reporting.",
+          "priority": "medium",
+          "impact": "Regulatory non-compliance, loss of market transparency, reduced investor confidence, and potential enforcement actions for reporting failures.",
+          "recommendation": "Develop Reporting and Transparency Policy including: 1) Regulatory reporting calendar and requirements, 2) Public disclosure of reserve composition and audits, 3) Financial reporting standards, 4) Data retention and retrieval procedures."
+        }
+      ],
+      "low": []
+    },
+    "analysis_prompt": "You are a regulatory compliance expert. Analyze the gaps between regulatory requirements and company policies.\n\nREGULATORY REQUIREMENTS:\nRegulatory Research Summary\n\nNote: Limited research results were obtained. This may be due to:\n- API key issues (check your .env file)\n- Rate limiting\n- Network connectivity issues\n\nQuery: stablecoin regulation British Indian Ocean Territory\n\nThe agent will proceed with analysis based on available information and LLM knowledge.\n\n\nCURRENT COMPANY POLICIES:\n\n\n\nPlease provide a structured gap analysis that includes:\n1. Identified Gaps: List specific gaps between regulations and policies\n2. Compliance Status: For each regulatory requirement, indicate if it's met, partially met, or not met\n3. Recommendations: Specific recommendations to address each gap\n4. Priority Levels: Categorize gaps as Critical, High, Medium, or Low priority\n\nFormat your response as JSON with the following structure:\n{\n    \"identified_gaps\": [\n        {\n            \"gap_id\": \"GAP-001\",\n            \"regulatory_requirement\": \"Description of requirement\",\n            \"current_policy_status\": \"Description of current policy\",\n            \"gap_description\": \"What's missing\",\n            \"priority\": \"critical|high|medium|low\",\n            \"impact\": \"Description of impact if not addressed\",\n            \"recommendation\": \"Specific recommendation\"\n        }\n    ],\n    \"compliance_status\": {\n        \"requirement_name\": \"met|partial|not_met\"\n    },\n    \"summary\": \"Overall compliance summary\"\n}\n",
+    "summary": "CRITICAL COMPLIANCE DEFICIENCY: The company currently has no documented policies addressing fundamental regulatory requirements for stablecoin operations in the British Indian Ocean Territory or any jurisdiction. All core regulatory areas show 'not met' status, indicating the company is operating without any compliance framework. Immediate action is required to develop and implement comprehensive policies across all regulatory domains before continuing operations. The highest priority gaps relate to legal authorization, reserve management, and AML/CTF compliance, which carry the most severe regulatory and financial risks."
+  },
+  "policy_updates": {},
+  "sources_count": 0,
+  "sources": [],
+  "has_policy_implementation": false,
+  "report": "# Regulatory Analysis Report\nGenerated: 2026-02-12 16:21:24\n\n## Regulatory Requirements Summary\n\nRegulatory Research Summary\n\nNote: Limited research results were obtained. This may be due to:\n- API key issues (check your .env file)\n- Rate limiting\n- Network connectivity issues\n\nQuery: stablecoin regulation British Indian Ocean Territory\n\nThe agent will proceed with analysis based on available information and LLM knowledge.\n\n\n\n# Gap Analysis Report\nGenerated: 2026-02-12T14:16:04.709527\n\n## Executive Summary\nCRITICAL COMPLIANCE DEFICIENCY: The company currently has no documented policies addressing fundamental regulatory requirements for stablecoin operations in the British Indian Ocean Territory or any jurisdiction. All core regulatory areas show 'not met' status, indicating the company is operating without any compliance framework. Immediate action is required to develop and implement comprehensive policies across all regulatory domains before continuing operations. The highest priority gaps relate to legal authorization, reserve management, and AML/CTF compliance, which carry the most severe regulatory and financial risks.\n\n## Critical Priority Gaps\n\n### Gap 1: GAP-001\n**Requirement:** Legal authorization to issue stablecoins in British Indian Ocean Territory (BIOT)\n\n**Current Status:** No policy exists regarding jurisdictional authorization\n\n**Gap:** Company lacks any policy addressing whether it is legally authorized to operate stablecoin services in BIOT. No jurisdictional risk assessment or licensing framework is documented.\n\n**Impact:** Operating without proper authorization could result in regulatory enforcement actions, fines, license revocation, and reputational damage.\n\n**Recommendation:** Immediately suspend any stablecoin operations in BIOT until legal counsel confirms authorization requirements. Develop a Jurisdictional Authorization Policy that includes: 1) Legal assessment process for new jurisdictions, 2) Licensing requirements documentation, 3) Regulatory engagement protocol.\n\n### Gap 2: GAP-002\n**Requirement:** Stablecoin reserve requirements and backing asset standards\n\n**Current Status:** No documented reserve management or asset backing policies\n\n**Gap:** No policies exist regarding reserve composition, custody arrangements, audit requirements, or redemption mechanisms for stablecoins.\n\n**Impact:** Failure to maintain adequate reserves could lead to insolvency, loss of peg, consumer harm, and regulatory sanctions including cease-and-desist orders.\n\n**Recommendation:** Develop a Comprehensive Reserve Management Policy including: 1) Minimum reserve requirements (e.g., 100% backing), 2) Permissible asset types and concentration limits, 3) Independent custody arrangements, 4) Monthly attestation/audit requirements, 5) Redemption procedures and timelines.\n\n### Gap 3: GAP-003\n**Requirement:** Anti-Money Laundering (AML) and Counter-Terrorist Financing (CTF) compliance\n\n**Current Status:** No AML/CTF policies documented\n\n**Gap:** Complete absence of AML/CTF framework including customer due diligence, transaction monitoring, suspicious activity reporting, and record-keeping.\n\n**Impact:** Significant regulatory penalties, criminal liability for money laundering facilitation, loss of banking relationships, and potential business closure.\n\n**Recommendation:** Implement a full AML/CTF Program including: 1) Risk-based customer identification and verification (KYC), 2) Ongoing transaction monitoring, 3) Suspicious activity reporting procedures, 4) Designated compliance officer, 5) Regular employee training, 6) Independent testing program.\n\n## High Priority Gaps\n\n### Gap 1: GAP-004\n**Requirement:** Consumer protection and disclosure requirements\n\n**Recommendation:** Develop Consumer Protection Framework including: 1) Clear terms of service and user agreements, 2) Prominent risk disclosures about stablecoin mechanics, 3) Transparent fee schedule, 4) Formal complaint handling process, 5) Dispute resolution mechanism.\n\n### Gap 2: GAP-005\n**Requirement:** Operational resilience and cybersecurity standards\n\n**Recommendation:** Establish Operational Resilience Program including: 1) Business continuity and disaster recovery plans, 2) Cybersecurity framework (NIST or equivalent), 3) Incident response protocol, 4) Regular penetration testing, 5) System availability targets and monitoring.\n\n### Gap 3: GAP-006\n**Requirement:** Governance and risk management framework\n\n**Recommendation:** Implement Governance Framework including: 1) Board-level compliance committee, 2) Chief Compliance Officer appointment, 3) Regular risk assessments, 4) Internal audit function, 5) Whistleblower policy, 6) Code of conduct.\n\n## Compliance Status\n\n❌ **jurisdictional_authorization**: not_met\n❌ **reserve_requirements**: not_met\n❌ **aml_ctf_compliance**: not_met\n❌ **consumer_protection**: not_met\n❌ **operational_resilience**: not_met\n❌ **governance_framework**: not_met\n❌ **reporting_transparency**: not_met\n\n\n\n\n## Errors\nPolicy update error: Connection error."
+}
