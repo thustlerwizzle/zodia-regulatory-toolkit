@@ -19,8 +19,21 @@ class RegulatoryKnowledgeBase:
 
     def __init__(self, data_dir: str = None):
         if data_dir is None:
+            # Try multiple possible locations (local dev vs cloud deployment)
             base = Path(__file__).parent
-            data_dir = base / "stablecoin_analysis_all_jurisdictions"
+            candidates = [
+                base / "stablecoin_analysis_all_jurisdictions",
+                Path.cwd() / "stablecoin_analysis_all_jurisdictions",
+                Path("/mount/src") / "zodia-regulatory-toolkit" / "stablecoin_analysis_all_jurisdictions",
+            ]
+            data_dir = None
+            for candidate in candidates:
+                if candidate.exists() and any(candidate.glob("*_analysis.json")):
+                    data_dir = candidate
+                    break
+            if data_dir is None:
+                # Default fallback (may not exist)
+                data_dir = base / "stablecoin_analysis_all_jurisdictions"
         else:
             data_dir = Path(data_dir)
 
@@ -175,6 +188,7 @@ class RegulatoryKnowledgeBase:
             "rich_data": rich_count,
             "thin_data": thin_count,
             "data_dir": str(self.data_dir),
+            "data_dir_exists": self.data_dir.exists() if self.data_dir else False,
             "loaded": self._loaded
         }
 

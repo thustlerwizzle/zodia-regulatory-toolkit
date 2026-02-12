@@ -45,13 +45,24 @@ class ZodiaResearchEngine:
     """
 
     def __init__(self):
-        self.llm = ChatDeepSeek(
-            model=LLM_MODEL,
-            temperature=LLM_TEMPERATURE,
-            max_tokens=None,
-            timeout=120,
-            max_retries=3
-        ) if DEEPSEEK_API_KEY else None
+        self.llm = None
+        self._llm_error = None
+        if DEEPSEEK_API_KEY:
+            try:
+                self.llm = ChatDeepSeek(
+                    model=LLM_MODEL,
+                    temperature=LLM_TEMPERATURE,
+                    max_tokens=None,
+                    timeout=120,
+                    max_retries=3
+                )
+                print(f"[LLM] DeepSeek initialized (model={LLM_MODEL})")
+            except Exception as e:
+                self._llm_error = str(e)
+                print(f"[LLM] ERROR: Could not initialize DeepSeek: {e}")
+        else:
+            self._llm_error = "DEEPSEEK_API_KEY is empty or not set"
+            print(f"[LLM] WARNING: No DEEPSEEK_API_KEY found - LLM analysis will NOT work")
 
         self.research_tools = ResearchTools()
         self.results_cache = {}
@@ -60,7 +71,7 @@ class ZodiaResearchEngine:
         self.knowledge_base = RegulatoryKnowledgeBase()
         try:
             kb_count = self.knowledge_base.load()
-            print(f"[KB] Loaded regulatory knowledge base: {kb_count} jurisdictions")
+            print(f"[KB] Loaded regulatory knowledge base: {kb_count} jurisdictions from {self.knowledge_base.data_dir}")
         except Exception as e:
             print(f"[KB] Warning: Could not load knowledge base: {e}")
 
@@ -555,24 +566,37 @@ Be SPECIFIC. Cite laws by name and article. Quote the statutory scope. For the v
 
         is_registered = registration_info is not None
 
+        error_notice = (
+            f"**ANALYSIS INCOMPLETE - FALLBACK REPORT**\n\n"
+            f"The AI-powered analysis could not be completed for {jurisdiction}.\n\n"
+            f"**Reason:** {error if error else 'LLM (DeepSeek) is unavailable or did not return a valid response.'}\n\n"
+            f"**What this means:** This report contains only basic placeholder information, "
+            f"NOT the full regulatory intelligence you would normally receive.\n\n"
+            f"**To fix:** Ensure the DEEPSEEK_API_KEY is correctly configured in the app settings, "
+            f"then try again."
+        )
+
         return {
-            "summary": f"Regulatory analysis for {jurisdiction}. {f'Error: {error}' if error else 'LLM unavailable.'}",
+            "summary": error_notice,
             "high_level_risk_points": [
+                "ANALYSIS INCOMPLETE - This is a fallback report, not a full analysis",
                 f"Regulatory status in {jurisdiction} requires manual review",
-                "LLM-powered analysis unavailable - basic report only"
+                f"Error: {error[:200]}" if error else "LLM-powered analysis was unavailable"
             ],
-            "regulatory_framework": f"Manual review needed for {jurisdiction}.",
-            "virtual_asset_trading_platforms": "Requires LLM analysis.",
-            "stablecoin_regulation": "Requires LLM analysis.",
-            "store_of_value_facility_rules": "Requires LLM analysis.",
-            "regulatory_expectations_and_licensing_triggers": "Requires LLM analysis.",
+            "regulatory_framework": f"**Requires full AI analysis.** Retry with a working DeepSeek API key.",
+            "virtual_asset_trading_platforms": "**Requires full AI analysis.** Retry with a working DeepSeek API key.",
+            "stablecoin_regulation": "**Requires full AI analysis.** Retry with a working DeepSeek API key.",
+            "store_of_value_facility_rules": "**Requires full AI analysis.** Retry with a working DeepSeek API key.",
+            "regulatory_expectations_and_licensing_triggers": "**Requires full AI analysis.** Retry with a working DeepSeek API key.",
             "territorial_scope_and_perimeter_test": (
-                f"UNKNOWN - Manual legal review required. Determine whether {jurisdiction}'s law "
-                "uses a provider-location test or client-location test. Assess if Zodia with zero "
+                f"**UNKNOWN - Full AI analysis required.**\n\n"
+                f"Manual legal review needed to determine whether {jurisdiction}'s law "
+                "uses a provider-location test or client-location test, and whether Zodia with zero "
                 "local presence falls outside the regulatory perimeter."
             ),
             "reverse_solicitation_and_direct_market_access": (
-                f"UNKNOWN - Manual legal review required for {jurisdiction}. "
+                f"**UNKNOWN - Full AI analysis required.**\n\n"
+                f"Manual legal review needed for {jurisdiction}. "
                 "Determine if reverse solicitation is permitted, whether in statute or guidance, "
                 "and what conditions apply."
             ),
@@ -581,19 +605,22 @@ Be SPECIFIC. Cite laws by name and article. Quote the statutory scope. For the v
                 + (
                     "Clients can be onboarded under the existing registration."
                     if is_registered else
+                    "**Full AI analysis required for cross-border advisory.** "
                     "Apply the perimeter test: with zero presence and zero solicitation, "
                     "determine if Zodia is outside scope. If not, assess reverse solicitation path."
                 )
             ),
             "compliance_guidance_and_recommendations": (
                 f"Standard onboarding applies." if is_registered else
-                f"RECOMMENDATION: Conduct perimeter test analysis. If outside scope, serve via "
-                f"reverse solicitation only with full documentation. If in scope, seek local legal advice."
+                f"**VERDICT UNAVAILABLE - Full AI analysis required.**\n\n"
+                f"RECOMMENDATION: Retry this analysis with a valid DeepSeek API key to get "
+                f"a proper SERVE/DECLINE verdict for {jurisdiction}."
             ),
             "sources_and_references": [],
             "_news_headlines": news_summary,
             "_registration_info": registration_info,
-            "_fallback": True
+            "_fallback": True,
+            "_error": error
         }
 
     def format_report_markdown(self, result: Dict) -> str:

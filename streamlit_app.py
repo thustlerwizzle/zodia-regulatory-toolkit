@@ -156,14 +156,35 @@ def initialize():
     """Initialize the engines (cached in session state)."""
     if not st.session_state.initialized:
         if not secrets_loaded or not DEEPSEEK_API_KEY:
-            st.error("API keys not configured. Please set up Streamlit secrets.")
+            st.error(
+                "**API keys not configured.** "
+                "If you are the app owner, go to Streamlit Cloud > Settings > Secrets "
+                "and add your DEEPSEEK_API_KEY."
+            )
+            st.info(
+                "**Required secrets format:**\n"
+                '```\nDEEPSEEK_API_KEY = "sk-your-key-here"\n'
+                'NEWSAPI_KEY = "your-newsapi-key"\n```'
+            )
             st.stop()
         try:
-            st.session_state.zodia_engine = ZodiaResearchEngine()
+            engine = ZodiaResearchEngine()
+
+            # Verify knowledge base loaded
+            kb_stats = engine.knowledge_base.get_stats()
+            if kb_stats["total_jurisdictions"] == 0:
+                st.warning(
+                    f"Knowledge base is empty. Path: {kb_stats['data_dir']}. "
+                    "Analysis will rely on LLM knowledge only."
+                )
+
+            st.session_state.zodia_engine = engine
             st.session_state.agent = RegulatoryAgent()
             st.session_state.initialized = True
         except Exception as e:
             st.error(f"Failed to initialize: {str(e)}")
+            import traceback
+            st.code(traceback.format_exc())
             st.stop()
 
 initialize()
@@ -196,6 +217,34 @@ with st.sidebar:
     st.markdown("---")
     st.caption(f"Jurisdictions: {len(JURISDICTIONS)}")
     st.caption(f"Regulatory Topics: {len(REGULATORY_AREAS)}")
+
+    # SYSTEM HEALTH CHECK
+    st.markdown("---")
+    st.markdown("#### System Health")
+    engine = st.session_state.get("zodia_engine")
+    if engine:
+        # LLM status
+        if engine.llm:
+            st.markdown("- **LLM (DeepSeek):** Connected")
+        else:
+            st.markdown("- **LLM (DeepSeek):** NOT connected")
+
+        # Knowledge base status
+        kb_stats = engine.knowledge_base.get_stats()
+        kb_count = kb_stats["total_jurisdictions"]
+        if kb_count > 0:
+            st.markdown(f"- **Knowledge Base:** {kb_count} jurisdictions")
+        else:
+            st.markdown(f"- **Knowledge Base:** EMPTY")
+            st.caption(f"  Path: {kb_stats['data_dir']}")
+
+        # NewsAPI status
+        if engine.newsapi_available:
+            st.markdown("- **NewsAPI:** Active")
+        else:
+            st.markdown("- **NewsAPI:** Unavailable")
+    else:
+        st.markdown("- Engine not initialized")
 
 # ============================================================================
 # HEADER
@@ -296,6 +345,13 @@ with tab_zodia:
                     st.session_state.batch_results = None
                 except Exception as e:
                     st.error(f"Research failed: {str(e)}")
+                    import traceback
+                    with st.expander("Error Details"):
+                        st.code(traceback.format_exc())
+                        st.markdown("**Troubleshooting:**")
+                        st.markdown("1. Check that `DEEPSEEK_API_KEY` is set correctly in Streamlit secrets")
+                        st.markdown("2. The DeepSeek API may be temporarily unavailable")
+                        st.markdown("3. Try again in a few seconds")
 
         elif research_mode == "All Registered (4)":
             jurisdictions_to_research = list(ZODIA_REGISTERED_JURISDICTIONS.keys())
@@ -342,6 +398,21 @@ with tab_zodia:
 
         st.markdown(f"## {jurisdiction} - Regulatory Intelligence Report")
         st.caption(f"Generated: {result.get('timestamp', 'N/A')} | Duration: {result.get('duration_seconds', 0):.1f}s | News Articles: {result.get('news_articles_found', 0)}")
+
+        # Data source transparency badges
+        data_sources = result.get("data_sources", [])
+        is_fallback = result.get("report", {}).get("_fallback", False)
+        if is_fallback:
+            st.error(
+                "**ANALYSIS QUALITY WARNING:** The AI engine could not complete a full analysis. "
+                "This is a basic fallback report. Check System Health in the sidebar. "
+                "Common causes: API key not configured, LLM timeout, or server resource limits."
+            )
+        elif data_sources:
+            badge_parts = []
+            for ds in data_sources:
+                badge_parts.append(f"**{ds}**")
+            st.info(f"Data Sources: {' | '.join(badge_parts)}")
 
         # Metrics
         risks = report.get("high_level_risk_points", [])
