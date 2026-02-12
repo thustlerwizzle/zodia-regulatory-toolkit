@@ -1,4 +1,18 @@
+# ============================================
+# SECURITY - NEVER commit these files
+# ============================================
+.env
+.env.*
+!.env.example
+.streamlit/secrets.toml
+secrets.toml
+*.key
+*.pem
+credentials.json
+
+# ============================================
 # Python
+# ============================================
 __pycache__/
 *.py[cod]
 *$py.class
@@ -19,44 +33,32 @@ wheels/
 *.egg-info/
 .installed.cfg
 *.egg
-
-# Virtual Environment
 venv/
 env/
-ENV/
-.venv
+.venv/
 
-# Environment variables
-.env
-.env.local
-
+# ============================================
 # IDE
+# ============================================
 .vscode/
 .idea/
 *.swp
 *.swo
 *~
+.cursor/
 
-# Streamlit
-.streamlit/
+# ============================================
+# Analysis output (large files)
+# ============================================
+stablecoin_analysis_all_jurisdictions/
+monitoring_data/
+regulatory_snapshots/
+revisions/
+notifications/
 
+# ============================================
 # OS
+# ============================================
 .DS_Store
 Thumbs.db
-
-# Logs
-*.log
-
-# Reports
-reports/
-*.md.bak
-
-# Data
-data/
-*.csv
-*.json
-*.xlsx
-
-# Jupyter Notebook
-.ipynb_checkpoints
-
+desktop.ini

@@ -1,8 +1,16 @@
 """
 Full Stablecoin Regulation Analysis - ALL Jurisdictions
 Comprehensive analysis across all 300+ countries and territories
-This will take many hours to complete!
+With automatic retry and robust error handling
 """
+import sys
+import io
+
+# Fix Windows console encoding for Unicode
+if sys.platform == 'win32':
+    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', errors='replace', line_buffering=True)
+    sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8', errors='replace', line_buffering=True)
+
 import warnings
 warnings.filterwarnings('ignore', category=FutureWarning)
 
@@ -10,9 +18,9 @@ import json
 import os
 from datetime import datetime
 from pathlib import Path
-from regulatory_agent import RegulatoryAgent
-from config import JURISDICTIONS, DEEPSEEK_API_KEY, REGULATORY_AREAS
+from config import JURISDICTIONS, DEEPSEEK_API_KEY
 import time
+import traceback
 
 # Create results directory
 RESULTS_DIR = Path("stablecoin_analysis_all_jurisdictions")
@@ -21,6 +29,10 @@ RESULTS_DIR.mkdir(exist_ok=True)
 # Progress tracking file
 PROGRESS_FILE = RESULTS_DIR / "progress.json"
 SUMMARY_FILE = RESULTS_DIR / "FULL_ANALYSIS_SUMMARY.md"
+
+# Retry settings
+MAX_RETRIES = 3
+RETRY_DELAY = 30  # seconds
 
 def load_progress():
     """Load progress from previous run"""
@@ -43,77 +55,96 @@ def save_progress(progress):
     with open(PROGRESS_FILE, 'w', encoding='utf-8') as f:
         json.dump(progress, f, indent=2, ensure_ascii=False)
 
-def analyze_jurisdiction(agent, jurisdiction, progress):
-    """Analyze a single jurisdiction"""
+def create_agent_with_retry():
+    """Create agent with retry logic"""
+    from regulatory_agent import RegulatoryAgent
+    
+    for attempt in range(MAX_RETRIES):
+        try:
+            agent = RegulatoryAgent()
+            return agent
+        except Exception as e:
+            print(f"   Attempt {attempt + 1}/{MAX_RETRIES} failed: {e}")
+            if attempt < MAX_RETRIES - 1:
+                print(f"   Retrying in {RETRY_DELAY} seconds...")
+                time.sleep(RETRY_DELAY)
+            else:
+                raise
+
+def analyze_jurisdiction_with_retry(agent, jurisdiction, progress):
+    """Analyze a single jurisdiction with retry logic"""
     print(f"\n{'='*80}")
     print(f"Analyzing: {jurisdiction}")
     print(f"Progress: {len(progress['completed'])}/{len(JURISDICTIONS)} completed")
     print(f"{'='*80}")
     
-    try:
-        # Run analysis
-        results = agent.run(
-            query="stablecoin regulation",
-            jurisdiction=jurisdiction,
-            current_policies=""
-        )
-        
-        # Save individual result
-        safe_name = jurisdiction.replace(" ", "_").replace("/", "_")
-        result_file = RESULTS_DIR / f"{safe_name}_analysis.json"
-        
-        result_data = {
-            "jurisdiction": jurisdiction,
-            "timestamp": datetime.now().isoformat(),
-            "regulatory_summary": results.get("regulatory_summary", ""),
-            "gap_analysis": results.get("gap_analysis", {}),
-            "policy_updates": results.get("policy_updates", {}),
-            "sources_count": len(results.get("sources", [])),
-            "sources": results.get("sources", [])[:10],  # Save first 10 sources
-            "has_policy_implementation": bool(results.get("policy_implementation", {}).get("files_created")),
-            "report": results.get("report", "")
-        }
-        
-        with open(result_file, 'w', encoding='utf-8') as f:
-            json.dump(result_data, f, indent=2, ensure_ascii=False)
-        
-        # Save markdown report
-        if results.get("report"):
-            report_file = RESULTS_DIR / f"{safe_name}_report.md"
-            with open(report_file, 'w', encoding='utf-8') as f:
-                f.write(results["report"])
-        
-        # Update progress
-        progress["completed"].append({
-            "jurisdiction": jurisdiction,
-            "timestamp": datetime.now().isoformat(),
-            "result_file": str(result_file),
-            "gaps_critical": len(results.get("gap_analysis", {}).get("priority_levels", {}).get("critical", [])),
-            "gaps_high": len(results.get("gap_analysis", {}).get("priority_levels", {}).get("high", [])),
-            "sources": len(results.get("sources", []))
-        })
-        
-        save_progress(progress)
-        
-        print(f"✅ Completed: {jurisdiction}")
-        print(f"   Gaps: Critical={result_data.get('gap_analysis', {}).get('priority_levels', {}).get('critical', [])}, High={result_data.get('gap_analysis', {}).get('priority_levels', {}).get('high', [])}")
-        print(f"   Sources: {result_data['sources_count']}")
-        
-        return True
-        
-    except Exception as e:
-        error_msg = str(e)
-        print(f"❌ Failed: {jurisdiction}")
-        print(f"   Error: {error_msg}")
-        
-        progress["failed"].append({
-            "jurisdiction": jurisdiction,
-            "timestamp": datetime.now().isoformat(),
-            "error": error_msg
-        })
-        save_progress(progress)
-        
-        return False
+    for attempt in range(MAX_RETRIES):
+        try:
+            # Run analysis
+            results = agent.run(
+                query="stablecoin regulation",
+                jurisdiction=jurisdiction,
+                current_policies=""
+            )
+            
+            # Save individual result
+            safe_name = jurisdiction.replace(" ", "_").replace("/", "_")
+            result_file = RESULTS_DIR / f"{safe_name}_analysis.json"
+            
+            result_data = {
+                "jurisdiction": jurisdiction,
+                "timestamp": datetime.now().isoformat(),
+                "regulatory_summary": results.get("regulatory_summary", ""),
+                "gap_analysis": results.get("gap_analysis", {}),
+                "policy_updates": results.get("policy_updates", {}),
+                "sources_count": len(results.get("sources", [])),
+                "sources": results.get("sources", [])[:10],
+                "has_policy_implementation": bool(results.get("policy_implementation", {}).get("files_created")),
+                "report": results.get("report", "")
+            }
+            
+            with open(result_file, 'w', encoding='utf-8') as f:
+                json.dump(result_data, f, indent=2, ensure_ascii=False)
+            
+            # Save markdown report
+            if results.get("report"):
+                report_file = RESULTS_DIR / f"{safe_name}_report.md"
+                with open(report_file, 'w', encoding='utf-8') as f:
+                    f.write(results["report"])
+            
+            # Update progress
+            progress["completed"].append({
+                "jurisdiction": jurisdiction,
+                "timestamp": datetime.now().isoformat(),
+                "result_file": str(result_file),
+                "gaps_critical": len(results.get("gap_analysis", {}).get("priority_levels", {}).get("critical", [])),
+                "gaps_high": len(results.get("gap_analysis", {}).get("priority_levels", {}).get("high", [])),
+                "sources": len(results.get("sources", []))
+            })
+            
+            save_progress(progress)
+            
+            print(f"✅ Completed: {jurisdiction}")
+            print(f"   Sources: {result_data['sources_count']}")
+            
+            return True
+            
+        except Exception as e:
+            error_msg = str(e)
+            print(f"   ⚠️ Attempt {attempt + 1}/{MAX_RETRIES} failed: {error_msg[:100]}")
+            
+            if attempt < MAX_RETRIES - 1:
+                print(f"   Retrying in {RETRY_DELAY} seconds...")
+                time.sleep(RETRY_DELAY)
+            else:
+                print(f"❌ Failed: {jurisdiction} after {MAX_RETRIES} attempts")
+                progress["failed"].append({
+                    "jurisdiction": jurisdiction,
+                    "timestamp": datetime.now().isoformat(),
+                    "error": error_msg
+                })
+                save_progress(progress)
+                return False
 
 def generate_summary(progress):
     """Generate comprehensive summary report"""
@@ -204,15 +235,6 @@ All individual jurisdiction analyses are saved in:
 
 ---
 
-## Next Steps
-
-1. Review individual jurisdiction reports
-2. Identify jurisdictions with highest compliance gaps
-3. Prioritize policy development based on critical gaps
-4. Monitor regulatory changes in key jurisdictions
-
----
-
 *Generated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}*
 """
     
@@ -222,7 +244,7 @@ All individual jurisdiction analyses are saved in:
     print(f"✅ Summary saved to: {SUMMARY_FILE}")
 
 def main():
-    """Main execution"""
+    """Main execution with robust error handling"""
     print("="*80)
     print("FULL STABLECOIN REGULATION ANALYSIS - ALL JURISDICTIONS")
     print("="*80)
@@ -256,13 +278,13 @@ def main():
             print("Cancelled.")
             return
     
-    # Initialize agent
+    # Initialize agent with retry
     print("🔄 Initializing Regulatory Agent...")
     try:
-        agent = RegulatoryAgent()
+        agent = create_agent_with_retry()
         print("✅ Agent initialized\n")
     except Exception as e:
-        print(f"❌ Failed to initialize agent: {e}")
+        print(f"❌ Failed to initialize agent after {MAX_RETRIES} attempts: {e}")
         return
     
     # Process each jurisdiction
@@ -271,6 +293,9 @@ def main():
     
     print(f"🚀 Starting analysis of {len(remaining)} jurisdictions...\n")
     
+    consecutive_failures = 0
+    max_consecutive_failures = 5
+    
     for i, jurisdiction in enumerate(remaining, 1):
         elapsed = time.time() - start_time
         avg_time = elapsed / i if i > 0 else 0
@@ -278,10 +303,25 @@ def main():
         
         print(f"\n[{i}/{len(remaining)}] Estimated remaining: {remaining_time/3600:.1f} hours")
         
-        analyze_jurisdiction(agent, jurisdiction, progress)
+        success = analyze_jurisdiction_with_retry(agent, jurisdiction, progress)
+        
+        if success:
+            consecutive_failures = 0
+        else:
+            consecutive_failures += 1
+            if consecutive_failures >= max_consecutive_failures:
+                print(f"\n⚠️ {max_consecutive_failures} consecutive failures. Reinitializing agent...")
+                try:
+                    agent = create_agent_with_retry()
+                    consecutive_failures = 0
+                    print("✅ Agent reinitialized")
+                except Exception as e:
+                    print(f"❌ Failed to reinitialize agent: {e}")
+                    print("Stopping analysis...")
+                    break
         
         # Small delay to avoid rate limiting
-        time.sleep(2)
+        time.sleep(3)
         
         # Generate summary every 10 jurisdictions
         if i % 10 == 0:
@@ -300,14 +340,21 @@ def main():
     print(f"📄 Summary: {SUMMARY_FILE}")
 
 if __name__ == "__main__":
-    try:
-        main()
-    except KeyboardInterrupt:
-        print("\n\n⚠️  Analysis interrupted by user.")
-        print("💾 Progress has been saved. You can resume later by running this script again.")
-    except Exception as e:
-        print(f"\n❌ Fatal error: {e}")
-        import traceback
-        traceback.print_exc()
-
-
+    while True:
+        try:
+            main()
+            break  # Exit if completed normally
+        except KeyboardInterrupt:
+            print("\n\n⚠️  Analysis interrupted by user.")
+            print("💾 Progress has been saved. You can resume later by running this script again.")
+            break
+        except Exception as e:
+            print(f"\n❌ Unexpected error: {e}")
+            traceback.print_exc()
+            print("\n🔄 Restarting in 60 seconds... (Press Ctrl+C to stop)")
+            try:
+                time.sleep(60)
+                print("🔄 Restarting analysis...")
+            except KeyboardInterrupt:
+                print("\n⚠️  Stopped by user.")
+                break
