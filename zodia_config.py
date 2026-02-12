@@ -210,16 +210,18 @@ REGULATION_STATUS_EXCLUDE = [
 # ============================================================================
 
 ZODIA_REPORT_SECTIONS = {
-    "summary": "Concise overview of the country's regulatory regime as it applies to Zodia Markets' specific business: institutional OTC brokerage, electronic spot trading, fiat-to-crypto conversion, and non-custodial digital asset services",
-    "high_level_risk_points": "Key regulatory risks for Zodia Markets specifically - focus on risks to its OTC brokerage, exchange, fiat-on-ramp, cross-border services, and non-custodial model",
-    "regulatory_framework": "The regulatory framework that governs Zodia's activities: which laws/regulations cover (a) OTC crypto brokerage, (b) electronic trading platforms for digital assets, (c) fiat-to-crypto conversion, (d) crypto-to-crypto exchange, (e) non-custodial models with delegated custody",
-    "virtual_asset_trading_platforms": "Specific licensing/authorization requirements for operating an electronic trading platform or exchange for digital assets in this jurisdiction, including market operator licenses, MTF/OTF rules if applicable",
-    "stablecoin_regulation": "Rules specifically affecting stablecoin trading, settlement, and fiat-backed token transactions - relevant because Zodia trades USDC, USDT, EURC and offers stablecoin payment services",
-    "store_of_value_facility_rules": "Regulations on store of value facilities, e-money, and payment token rules that apply to stablecoin trading and settlement models",
-    "regulatory_expectations_and_licensing_triggers": "What specific activities trigger a licensing requirement in this jurisdiction? Map each of Zodia's activities (OTC brokerage, exchange, fiat gateway, custody delegation) to the specific license/authorization needed",
-    "reverse_solicitation_and_direct_market_access": "CRITICAL: (a) Does this jurisdiction allow REVERSE SOLICITATION - can a local institutional client approach Zodia (a foreign VASP) on their own initiative and use Zodia's services without Zodia needing a local license? What are the conditions and limitations? (b) Is DIRECT MARKET ACCESS allowed - can Zodia provide its trading platform directly to clients in this jurisdiction from its UK/Ireland/ADGM/Jersey entities without establishing local presence? (c) What marketing/solicitation restrictions exist?",
-    "cross_border_client_advisory": "Can Zodia Markets legally serve an institutional client from this jurisdiction? Analyze: (a) Does this country require foreign VASPs to hold a local license before serving local institutional clients? (b) Which Zodia entity (UK, Ireland, ADGM, Jersey) is best positioned to serve this client? (c) Can Zodia rely on EU/MiCA passporting from Ireland if applicable? (d) What AML/KYC obligations does the local jurisdiction impose?",
-    "compliance_guidance_and_recommendations": "Actionable compliance advice: (a) Clear verdict: SERVE / SERVE WITH CONDITIONS / DECLINE with reasoning (b) What steps must Zodia take before onboarding? (c) Which Zodia entity should service the relationship? (d) What enhanced due diligence or restrictions apply? (e) If a local license is needed, what type and process?"
+    "summary": "Concise overview of the country's regulatory regime as it applies to Zodia Markets serving INSTITUTIONAL clients only (corporations, banks, funds, professional investors) via OTC brokerage, electronic spot trading, fiat-to-crypto, and non-custodial digital asset services. State whether rules are primarily retail-focused or also catch institutional services.",
+    "high_level_risk_points": "Key regulatory risks for Zodia Markets when serving INSTITUTIONAL clients only. Distinguish between risks that apply to all clients vs risks that are retail-specific and would NOT affect Zodia's institutional-only business.",
+    "regulatory_framework": "The regulatory framework governing Zodia's activities for institutional clients: (a) OTC crypto brokerage to institutions, (b) electronic trading platforms for professional participants, (c) fiat-to-crypto for corporate clients, (d) custody delegation. Identify any institutional/professional client exemptions or carve-outs.",
+    "virtual_asset_trading_platforms": "Licensing requirements for operating an electronic trading platform/exchange. Does the jurisdiction differentiate between platforms serving retail vs institutional clients? Are there lighter requirements for institutional-only platforms? MTF/OTF/market operator rules?",
+    "stablecoin_regulation": "Stablecoin rules affecting institutional trading and settlement (USDC, USDT, EURC). Do stablecoin rules apply differently to institutional vs retail transactions?",
+    "store_of_value_facility_rules": "Store of value facility, e-money, and payment token rules. Are institutional-to-institutional stablecoin transactions treated differently from retail?",
+    "regulatory_expectations_and_licensing_triggers": "Map each of Zodia's activities to specific licensing triggers when the CLIENT is an INSTITUTION. Are there exemptions for institutional-only VASPs? Professional client carve-outs? Qualified investor thresholds?",
+    "territorial_scope_and_perimeter_test": "CRITICAL PERIMETER TEST: (a) Does this jurisdiction's law apply based on where the PROVIDER is located or where the CLIENT is? Cite statutory language. (b) If Zodia has ZERO establishment, ZERO operational presence, ZERO solicitation - is it outside scope? (c) IMPORTANT: Does the scope analysis differ for institutional vs retail clients? Many laws aim to protect retail consumers - do they also catch foreign VASPs serving only institutions? (d) CONCLUSION: Can Zodia take the view it is outside the perimeter when serving only institutional clients with zero local presence?",
+    "reverse_solicitation_and_direct_market_access": "REVERSE SOLICITATION FOR INSTITUTIONAL CLIENTS: (a) Is reverse solicitation recognized? In statute, regulation, or guidance? Cite source. (b) Is the exemption BROADER for institutional/professional clients? (Many jurisdictions have wider exemptions for institutions.) (c) Conditions when an institutional client initiates contact. Documentation? One-off or ongoing? (d) What breaks reverse solicitation? (e) Enforcement focus: does the regulator pursue foreign VASPs serving institutions, or mainly retail? (f) DIRECT MARKET ACCESS: Can institutional clients access Zodia's platform from UK/Ireland/ADGM/Jersey without local presence?",
+    "cross_border_client_advisory": "Can Zodia serve an INSTITUTIONAL client from this jurisdiction? (a) With zero presence and institutional client approaching on own initiative - is Zodia outside scope? (b) Which Zodia entity best positioned? (c) EU/MiCA passporting available? (d) AML/KYC on foreign VASP or on the institutional client locally?",
+    "compliance_guidance_and_recommendations": "Verdict for serving INSTITUTIONAL clients: (a) SERVE (OUTSIDE PERIMETER) - zero presence + institutional-only + reverse solicitation / SERVE VIA REVERSE SOLICITATION ONLY / SERVE VIA PASSPORTING / SERVE WITH CONDITIONS / DECLINE (b) Documentation and safeguards needed (c) Which Zodia entity? (d) What must Zodia NEVER do? (e) What triggers would bring Zodia into scope even for institutional services?",
+    "sources_and_references": "List ALL regulations, laws, guidance documents, and regulatory publications cited in this report. For each: (a) Full official name, (b) Regulatory body/issuer, (c) Date enacted/effective, (d) URL to official source where the full text can be read. Include links to regulator websites, official gazettes, and government legal databases."
 }
 
 # ============================================================================
@@ -263,4 +265,84 @@ KEY FACTS:
 - Zodia uses a NON-CUSTODIAL model (third-party custodians hold client assets)
 - Zodia provides OTC brokerage AND electronic exchange/matching engine services
 - Zodia handles fiat-to-crypto AND crypto-to-crypto transactions
+"""
+
+# ============================================================================
+# ZODIA MARKETS CROSS-BORDER LEGAL APPROACH: THE PERIMETER TEST
+# This is how Zodia's legal/compliance team evaluates whether a jurisdiction's
+# law applies to them when they are NOT licensed there.
+# ============================================================================
+
+ZODIA_PERIMETER_TEST = """
+ZODIA MARKETS' CROSS-BORDER LEGAL APPROACH - THE PERIMETER / TERRITORIAL SCOPE TEST:
+
+Zodia Markets takes the following legal position for jurisdictions where it is NOT licensed:
+
+As long as services are NOT provided "in or from within" the jurisdiction, Zodia may be 
+OUTSIDE THE SCOPE of that jurisdiction's law and therefore NOT required to register or 
+obtain a local license.
+
+For this argument to hold, ALL of the following conditions must be met:
+
+1. NO PERMANENT ESTABLISHMENT: Zodia has no registered entity, branch, subsidiary, or 
+   corporate presence in the jurisdiction.
+
+2. NO OPERATIONAL PRESENCE: Zodia has no office, employees, servers, agents, or 
+   representatives physically located in the jurisdiction.
+
+3. NO ACTIVE SOLICITATION: Zodia does NOT market, advertise, cold-call, or actively 
+   solicit clients in or targeting the jurisdiction. No local-language websites, no 
+   local advertising, no attendance at local events for marketing purposes.
+
+4. PURELY REVERSE SOLICITATION: Zodia ONLY serves clients from that jurisdiction on 
+   a REVERSE SOLICITATION basis - meaning the client approached Zodia entirely on 
+   their OWN initiative, without any prompting, marketing, or solicitation by Zodia.
+
+THE CRITICAL QUESTION FOR EACH JURISDICTION:
+- Does the local law define its scope based on where the SERVICE is provided from, 
+  or where the CLIENT is located?
+- If the law catches "providing services TO persons in the jurisdiction" (client-location 
+  test), Zodia may still be in scope even without local presence.
+- If the law only catches "providing services IN or FROM the jurisdiction" (provider-location 
+  test), Zodia's argument is stronger.
+- Some jurisdictions have BOTH tests, or have expanded their scope to catch foreign 
+  providers serving local clients.
+- The analysis must determine which test the jurisdiction uses and whether Zodia's 
+  "no presence + reverse solicitation only" model puts it outside the regulatory perimeter.
+"""
+
+ZODIA_REVERSE_SOLICITATION_FRAMEWORK = """
+REVERSE SOLICITATION ANALYSIS FRAMEWORK:
+
+For each jurisdiction, determine:
+
+A. IS REVERSE SOLICITATION RECOGNIZED?
+   - Is there an explicit reverse solicitation exemption in statute or regulation?
+   - Is it only in regulatory guidance or practice (softer, can change)?
+   - Or is reverse solicitation NOT recognized at all (all foreign providers caught)?
+
+B. CONDITIONS FOR REVERSE SOLICITATION TO APPLY:
+   - Must the client be the SOLE initiator of the relationship?
+   - Is there a cooling-off or documentation requirement?
+   - Does Zodia need to document/evidence that the client approached first?
+   - Can Zodia provide ADDITIONAL services after the initial reverse solicitation, 
+     or does each new service require fresh reverse solicitation?
+   - Time limits: does the exemption expire (e.g., one-off transaction only)?
+
+C. WHAT BREAKS REVERSE SOLICITATION:
+   - Any marketing or advertising targeting the jurisdiction
+   - Having a local-language website or local social media presence
+   - Attending local conferences/events for marketing
+   - Using local agents or introducers
+   - Having any form of local operational presence
+   - Proactively contacting the client about new products/services
+
+D. PRACTICAL RISK ASSESSMENT:
+   - How aggressively does the local regulator enforce against foreign VASPs?
+   - Are there precedents of enforcement against foreign platforms relying on 
+     reverse solicitation?
+   - What are the penalties if the regulator determines reverse solicitation 
+     conditions were NOT met?
+   - Is there regulatory guidance that specifically addresses crypto/VASP 
+     reverse solicitation (vs traditional finance reverse solicitation)?
 """

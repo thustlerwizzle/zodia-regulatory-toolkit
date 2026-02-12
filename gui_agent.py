@@ -275,10 +275,12 @@ class RegulatoryAgentGUI:
             "5. Stablecoin & Fiat-Backed Tokens",
             "6. Store of Value Facility Rules",
             "7. Licensing Triggers & Expectations",
-            "8. Reverse Solicitation & Direct Market Access",
-            "9. Cross-Border Client Advisory",
-            "10. Compliance Guidance & Recommendations",
-            "11. Recent News & Developments",
+            "8. Territorial Scope & Perimeter Test",
+            "9. Reverse Solicitation & Direct Market Access",
+            "10. Cross-Border Client Advisory",
+            "11. Compliance Guidance & Verdict",
+            "12. Sources & References",
+            "13. Live News Feed (LIVE)",
             "FULL REPORT"
         ]
         for s in sections:
@@ -419,9 +421,11 @@ class RegulatoryAgentGUI:
             "stablecoin_regulation",
             "store_of_value_facility_rules",
             "regulatory_expectations_and_licensing_triggers",
+            "territorial_scope_and_perimeter_test",
             "reverse_solicitation_and_direct_market_access",
             "cross_border_client_advisory",
             "compliance_guidance_and_recommendations",
+            "sources_and_references",
             "_news",
             "_full"
         ]
@@ -442,24 +446,47 @@ class RegulatoryAgentGUI:
             else:
                 self.zodia_content_text.insert("1.0", "Run a research first.")
         elif key == "_news":
-            # Show news
+            # Show LIVE news feed with full details and URLs
             if hasattr(self, '_current_zodia_result'):
                 news = self._current_zodia_result.get("news_articles", [])
+                jur = self._current_zodia_result.get('jurisdiction', '')
+                ts = self._current_zodia_result.get('timestamp', 'N/A')[:19]
                 if news:
-                    lines = [f"Recent News for {self._current_zodia_result.get('jurisdiction', '')}",
-                             "=" * 60, ""]
+                    lines = [
+                        f"LIVE REGULATORY NEWS FEED - {jur}",
+                        "=" * 70,
+                        f"Data Source: NewsAPI (live scraping)",
+                        f"Scraped at: {ts}",
+                        f"Articles found: {len(news)} (last 30 days)",
+                        f"Coverage: VASP, crypto, stablecoin, digital asset regulation",
+                        "-" * 70, ""
+                    ]
                     for i, a in enumerate(news, 1):
-                        lines.append(f"{i}. {a.get('title', 'N/A')}")
-                        lines.append(f"   Date: {a.get('published_at', 'N/A')[:10]}")
-                        lines.append(f"   Source: {a.get('source', 'N/A')}")
-                        lines.append(f"   URL: {a.get('url', 'N/A')}")
+                        lines.append(f"[{i}] {a.get('title', 'N/A')}")
+                        lines.append(f"    Date:   {a.get('published_at', 'N/A')[:10]}")
+                        lines.append(f"    Source: {a.get('source', 'N/A')}")
+                        author = a.get('author', '')
+                        if author:
+                            lines.append(f"    Author: {author}")
+                        url = a.get('url', '')
+                        if url:
+                            lines.append(f"    URL:    {url}")
                         content = a.get('content', '') or a.get('description', '')
                         if content:
-                            lines.append(f"   {content[:200]}...")
+                            lines.append(f"    Preview: {content[:300]}...")
+                        lines.append("-" * 70)
                         lines.append("")
+                    lines.append("NOTE: This is LIVE data scraped from news sources at the time of analysis.")
+                    lines.append("New regulatory developments will appear here as soon as they are reported")
+                    lines.append("by any news outlet covered by NewsAPI.")
                     self.zodia_content_text.insert("1.0", "\n".join(lines))
                 else:
-                    self.zodia_content_text.insert("1.0", "No recent news articles found.")
+                    self.zodia_content_text.insert("1.0",
+                        f"No recent news articles found for {jur} in the last 30 days.\n\n"
+                        "This may mean:\n"
+                        "- No significant regulatory developments in this period\n"
+                        "- News coverage is limited for this jurisdiction\n"
+                        "- Try searching broader terms in the News tab")
             else:
                 self.zodia_content_text.insert("1.0", "Run a research first.")
         else:
@@ -468,7 +495,26 @@ class RegulatoryAgentGUI:
             section_name = self.zodia_section_listbox.get(idx)
             
             lines = [section_name, "=" * len(section_name), ""]
-            if isinstance(value, list):
+            
+            if key == "sources_and_references":
+                # Special formatting for sources
+                lines.append("Official regulatory sources cited in this analysis:")
+                lines.append("-" * 50)
+                lines.append("")
+                if isinstance(value, list) and value:
+                    for i, src in enumerate(value, 1):
+                        lines.append(f"  {i}. {src}")
+                        lines.append("")
+                elif isinstance(value, str) and value:
+                    lines.append(value)
+                else:
+                    lines.append("  No specific source URLs provided.")
+                    lines.append("  Refer to the regulatory body's website for official texts.")
+                lines.append("")
+                lines.append("-" * 50)
+                lines.append("NOTE: URLs point to official regulator websites and gazettes.")
+                lines.append("Always verify against the original source before making decisions.")
+            elif isinstance(value, list):
                 for item in value:
                     lines.append(f"  - {item}")
             else:

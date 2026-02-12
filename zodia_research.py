@@ -17,6 +17,7 @@ except ImportError:
     from langchain.schema import HumanMessage, SystemMessage
 
 from research_tools import ResearchTools
+from knowledge_base import RegulatoryKnowledgeBase
 from config import DEEPSEEK_API_KEY, LLM_MODEL, LLM_TEMPERATURE
 from zodia_config import (
     COMPANY_NAME,
@@ -30,7 +31,9 @@ from zodia_config import (
     REGULATION_STATUS_FILTER,
     REGULATION_STATUS_EXCLUDE,
     ZODIA_REPORT_SECTIONS,
-    ZODIA_LICENSED_ENTITIES_CONTEXT
+    ZODIA_LICENSED_ENTITIES_CONTEXT,
+    ZODIA_PERIMETER_TEST,
+    ZODIA_REVERSE_SOLICITATION_FRAMEWORK
 )
 
 
@@ -53,6 +56,26 @@ class ZodiaResearchEngine:
         self.research_tools = ResearchTools()
         self.results_cache = {}
 
+        # Load local regulatory knowledge base (257 jurisdictions previously scraped)
+        self.knowledge_base = RegulatoryKnowledgeBase()
+        try:
+            kb_count = self.knowledge_base.load()
+            print(f"[KB] Loaded regulatory knowledge base: {kb_count} jurisdictions")
+        except Exception as e:
+            print(f"[KB] Warning: Could not load knowledge base: {e}")
+
+        # Check if NewsAPI is available
+        self.newsapi_available = False
+        try:
+            from config import NEWSAPI_KEY
+            if NEWSAPI_KEY and self.research_tools.newsapi_client:
+                self.newsapi_available = True
+                print("[NEWS] NewsAPI is available - live news scraping enabled")
+            else:
+                print("[NEWS] NewsAPI not configured - using knowledge base only")
+        except Exception:
+            print("[NEWS] NewsAPI not available - using knowledge base only")
+
     def research_jurisdiction(
         self,
         jurisdiction: str,
@@ -61,32 +84,60 @@ class ZodiaResearchEngine:
     ) -> Dict:
         """
         Perform comprehensive regulatory research for a single jurisdiction.
-        Maps each Zodia business activity to relevant local regulations.
+        Uses: (1) Local knowledge base from previous scrape, (2) Live NewsAPI if available,
+        (3) DeepSeek LLM analysis with both as context.
         """
         start_time = datetime.now()
 
         if progress_callback:
             progress_callback(f"Researching {jurisdiction}...")
 
-        # Step 1: Gather news
-        news_articles = []
-        if include_news:
-            news_articles = self._fetch_news(jurisdiction, progress_callback)
+        # Step 1: Load context from local knowledge base (always available)
+        kb_context = None
+        if progress_callback:
+            progress_callback(f"Loading knowledge base data for {jurisdiction}...")
+        kb_context = self.knowledge_base.get_jurisdiction_context(jurisdiction)
+        if kb_context:
+            if progress_callback:
+                progress_callback(f"  Found existing regulatory data for {jurisdiction}")
+        else:
+            if progress_callback:
+                progress_callback(f"  No prior data for {jurisdiction} in knowledge base")
 
-        # Step 2: Check registration status
+        # Step 2: Gather live news (if NewsAPI is available)
+        news_articles = []
+        if include_news and self.newsapi_available:
+            if progress_callback:
+                progress_callback(f"Fetching live news for {jurisdiction}...")
+            news_articles = self._fetch_news(jurisdiction, progress_callback)
+            if progress_callback:
+                progress_callback(f"  Found {len(news_articles)} live news articles")
+        elif include_news and not self.newsapi_available:
+            if progress_callback:
+                progress_callback(f"  NewsAPI not available - using knowledge base data only")
+
+        # Step 3: Check registration status
         registration_info = ZODIA_REGISTERED_JURISDICTIONS.get(jurisdiction, None)
 
-        # Step 3: Generate structured report via DeepSeek
+        # Step 4: Generate structured report via DeepSeek (with KB + news as context)
         if progress_callback:
             progress_callback(f"Analyzing {jurisdiction} regulations for Zodia's business activities...")
 
         report = self._generate_structured_report(
             jurisdiction=jurisdiction,
             news_articles=news_articles,
-            registration_info=registration_info
+            registration_info=registration_info,
+            kb_context=kb_context
         )
 
-        # Step 4: Compile result
+        # Step 5: Compile result
+        data_sources = []
+        if kb_context:
+            data_sources.append("Local Knowledge Base (257 jurisdictions)")
+        if news_articles:
+            data_sources.append(f"Live NewsAPI ({len(news_articles)} articles)")
+        data_sources.append("DeepSeek LLM Analysis")
+
         result = {
             "jurisdiction": jurisdiction,
             "timestamp": datetime.now().isoformat(),
@@ -94,7 +145,10 @@ class ZodiaResearchEngine:
             "is_registered": registration_info is not None,
             "registration_info": registration_info,
             "news_articles_found": len(news_articles),
-            "news_articles": news_articles[:10],
+            "news_articles": news_articles[:15],
+            "data_sources": data_sources,
+            "kb_data_available": kb_context is not None,
+            "newsapi_available": self.newsapi_available,
             "report": report,
             "status": "success"
         }
@@ -124,18 +178,36 @@ class ZodiaResearchEngine:
         return results
 
     def _fetch_news(self, jurisdiction: str, progress_callback=None) -> List[Dict]:
-        """Fetch relevant news for a jurisdiction."""
+        """
+        Fetch relevant LIVE news for a jurisdiction.
+        Gracefully handles API expiration or errors.
+        """
+        if not self.newsapi_available:
+            return []
+
         all_articles = []
         seen_urls = set()
 
+        # Broad set of queries to catch all relevant regulatory news
         queries = [
             f"VASP regulation {jurisdiction}",
-            f"crypto brokerage regulation {jurisdiction}",
+            f"crypto regulation {jurisdiction} 2025 2026",
+            f"virtual asset regulation {jurisdiction}",
+            f"crypto licensing {jurisdiction}",
+            f"digital asset exchange license {jurisdiction}",
+            f"crypto broker regulation {jurisdiction}",
             f"stablecoin regulation {jurisdiction}",
-            f"digital asset exchange licensing {jurisdiction}"
+            f"stablecoin law {jurisdiction}",
+            f"institutional crypto {jurisdiction}",
+            f"cross-border crypto services {jurisdiction}",
+            f"crypto enforcement {jurisdiction}",
+            f"AML crypto {jurisdiction}",
         ]
 
+        api_failed = False
         for query in queries:
+            if api_failed:
+                break  # Stop if API is down
             try:
                 articles = self.research_tools.search_news(query, days=30)
                 for article in articles:
@@ -144,21 +216,30 @@ class ZodiaResearchEngine:
                         seen_urls.add(url)
                         all_articles.append(article)
             except Exception as e:
-                if progress_callback:
-                    progress_callback(f"  News warning: {str(e)[:60]}")
+                error_str = str(e).lower()
+                if "401" in error_str or "403" in error_str or "expired" in error_str or "unauthorized" in error_str:
+                    # API key expired or invalid
+                    if progress_callback:
+                        progress_callback(f"  NewsAPI key expired/invalid - switching to knowledge base only")
+                    self.newsapi_available = False
+                    api_failed = True
+                else:
+                    if progress_callback:
+                        progress_callback(f"  News warning: {str(e)[:60]}")
 
         all_articles.sort(key=lambda x: x.get("published_at", ""), reverse=True)
-        return all_articles[:20]
+        return all_articles[:30]
 
     def _generate_structured_report(
         self,
         jurisdiction: str,
         news_articles: List[Dict],
-        registration_info: Optional[Dict]
+        registration_info: Optional[Dict],
+        kb_context: Optional[str] = None
     ) -> Dict:
         """
         Use DeepSeek to generate a structured regulatory report.
-        Walks through each Zodia business activity and maps to local regulations.
+        Injects local knowledge base data + live news as context.
         """
         if not self.llm:
             return self._generate_fallback_report(jurisdiction, news_articles, registration_info)
@@ -213,6 +294,27 @@ class ZodiaResearchEngine:
         prompt = f"""You are a senior regulatory compliance analyst and cross-border legal advisor. Prepare a regulatory intelligence report for **Zodia Markets** focused ONLY on regulations that DIRECTLY affect its specific business activities.
 
 ===========================================================================
+CRITICAL: INSTITUTIONAL CLIENTS ONLY
+===========================================================================
+Zodia Markets serves ONLY institutional and professional clients:
+- Corporations and corporate treasuries
+- Banks and financial institutions
+- Hedge funds and asset managers
+- Family offices
+- Professional investors meeting qualified/sophisticated investor thresholds
+Zodia does NOT serve retail clients, individuals, or consumers. NEVER.
+
+This distinction is CRITICAL because many jurisdictions:
+- EXEMPT services to institutional/professional/qualified investors from licensing
+- Have LIGHTER regulatory requirements for institutional-only business
+- Apply BROADER reverse solicitation exemptions for institutional clients
+- Have HIGHER thresholds before cross-border rules apply to institutional services
+- Distinguish between "retail" VASP licensing and "wholesale/institutional" licensing
+
+YOUR ENTIRE ANALYSIS must be through the lens of INSTITUTIONAL clients ONLY.
+Do NOT analyze retail/consumer protection rules unless they also catch institutional services.
+
+===========================================================================
 ZODIA MARKETS - WHAT THE BUSINESS ACTUALLY DOES
 ===========================================================================
 {COMPANY_DESCRIPTION}
@@ -231,45 +333,110 @@ ZODIA'S LICENSING FOOTPRINT (ONLY 4 JURISDICTIONS)
 {ZODIA_LICENSED_ENTITIES_CONTEXT}
 
 ===========================================================================
+ZODIA'S CROSS-BORDER LEGAL APPROACH - THE PERIMETER TEST
+===========================================================================
+{ZODIA_PERIMETER_TEST}
+
+===========================================================================
+REVERSE SOLICITATION ANALYSIS FRAMEWORK
+===========================================================================
+{ZODIA_REVERSE_SOLICITATION_FRAMEWORK}
+
+===========================================================================
 STATUS IN {jurisdiction.upper()}
 ===========================================================================
 {reg_context}
 {mica_note}
 
 ===========================================================================
-RECENT NEWS
+PREVIOUSLY RESEARCHED DATA (LOCAL KNOWLEDGE BASE)
+===========================================================================
+{kb_context if kb_context else f"No prior research data available for {jurisdiction} in the knowledge base."}
+
+===========================================================================
+LIVE NEWS (from NewsAPI - if available)
 ===========================================================================
 {news_context}
 
 ===========================================================================
-YOUR TASK - WALK THROUGH EACH BUSINESS ACTIVITY
+YOUR TASK
 ===========================================================================
 
-Analyze {jurisdiction}'s regulations ONLY as they relate to Zodia's actual business. Do NOT include generic crypto regulations that don't touch Zodia's activities.
+Analyze {jurisdiction}'s regulations ONLY as they relate to Zodia's actual business of serving INSTITUTIONAL clients. Do NOT include retail/consumer-focused rules unless they also catch institutional services.
 
-Walk through EACH of Zodia's business activities:
+PART 1 - BUSINESS ACTIVITY MAPPING (INSTITUTIONAL ONLY):
+Walk through EACH of Zodia's business activities and identify which regulations apply when serving INSTITUTIONAL clients specifically:
 
-1. OTC BROKERAGE: What license does Zodia need to broker OTC digital asset trades in {jurisdiction}? Cite the specific law/regulation.
+1. OTC BROKERAGE FOR INSTITUTIONS: What license does Zodia need to broker OTC digital asset trades for institutional/professional clients in {jurisdiction}? Is there a carve-out or lighter regime for institutional-only OTC? Cite the specific law/regulation.
 
-2. ELECTRONIC EXCHANGE: What license for operating an electronic matching engine / trading platform for digital assets? MTF/OTF/market operator rules?
+2. ELECTRONIC EXCHANGE FOR INSTITUTIONS: What license for operating an electronic trading platform for institutional clients? Do MTF/OTF/market operator rules apply differently for institutional-only platforms?
 
-3. FIAT-TO-CRYPTO: What regulations govern fiat-to-crypto conversion? Payment services / money transmission license needed?
+3. FIAT-TO-CRYPTO FOR INSTITUTIONS: What regulations govern fiat-to-crypto conversion when the client is an institution (not an individual)? Is the licensing requirement different?
 
-4. NON-CUSTODIAL MODEL: How does {jurisdiction} regulate custody delegation? Rules for non-custodial brokers using third-party custodians?
+4. NON-CUSTODIAL MODEL: How does {jurisdiction} regulate custody delegation when serving institutional clients who have their own custody arrangements?
 
-5. INSTITUTIONAL-ONLY: Does {jurisdiction} have lighter rules for serving ONLY institutional/professional clients vs retail?
+5. INSTITUTIONAL CLIENT EXEMPTIONS: 
+   - Does {jurisdiction} define "professional client", "qualified investor", "accredited investor", or "eligible counterparty"?
+   - What are the thresholds/criteria?
+   - Are VASPs/CASPs serving ONLY such clients exempt from full licensing?
+   - Are there lighter AML/KYC requirements for institutional clients?
+   - Does serving only institutions affect whether a foreign VASP needs a local license?
 
-6. REVERSE SOLICITATION: Does {jurisdiction} allow reverse solicitation? If a {jurisdiction} institutional client approaches Zodia ON THEIR OWN INITIATIVE, can Zodia serve them WITHOUT a local license? What are the EXACT conditions? Is this in statute, regulation, or guidance? What are the practical limitations?
+PART 2 - THE PERIMETER TEST (INSTITUTIONAL CONTEXT):
+Zodia's legal position: if it has NO establishment, NO operational presence, and NO active solicitation in {jurisdiction}, it may be OUTSIDE the scope of {jurisdiction}'s law.
 
-7. DIRECT MARKET ACCESS: Can Zodia provide its trading platform directly to {jurisdiction} clients from UK/Ireland/ADGM/Jersey without local presence? Rules?
+6. TERRITORIAL SCOPE OF THE LAW: 
+   - Does {jurisdiction}'s crypto/VASP law apply based on where the SERVICE PROVIDER is located, or where the CLIENT is located?
+   - Quote or cite the specific statutory language defining the law's territorial scope.
+   - If Zodia has ZERO presence in {jurisdiction}, does the law still catch it?
+   - Is there a "directed at" or "targeting" test?
+   - IMPORTANTLY: Does the scope analysis differ when the client is an institution vs a retail consumer? (Many laws specifically target retail investor protection and don't catch institutional cross-border services.)
+   - CONCLUSION: Can Zodia credibly argue it is OUTSIDE the regulatory perimeter of {jurisdiction} when serving only institutional clients?
 
-8. CROSS-BORDER: Which Zodia entity (UK, Ireland, ADGM, Jersey) is best positioned to serve a {jurisdiction} client? Why?
+7. REVERSE SOLICITATION (INSTITUTIONAL CONTEXT):
+   - Is reverse solicitation recognized in {jurisdiction}? In STATUTE, REGULATION, or just GUIDANCE? Cite the exact source.
+   - Is the reverse solicitation exemption BROADER for institutional/professional clients? (In many jurisdictions it is.)
+   - Exact conditions when an institutional client initiates: documentation requirements, one-off vs ongoing relationship?
+   - What BREAKS reverse solicitation? (marketing, local website, agents, conferences, proactive outreach)
+   - Can Zodia provide ADDITIONAL services after initial reverse solicitation from an institutional client?
+   - Enforcement: does the regulator pursue foreign VASPs serving institutional clients, or focus enforcement on retail?
+   - Does {jurisdiction} have SPECIFIC crypto/VASP reverse solicitation rules, or only traditional finance rules? Do the traditional finance rules (which often have institutional exemptions) apply to VASPs?
+
+8. DIRECT MARKET ACCESS FOR INSTITUTIONS: Can Zodia provide its electronic platform directly to institutional clients in {jurisdiction} from UK/Ireland/ADGM/Jersey? Rules on cross-border electronic access for professional/institutional participants?
+
+PART 3 - ADVISORY (INSTITUTIONAL FOCUS):
+9. CROSS-BORDER: Given that Zodia serves ONLY institutional clients, which approach for {jurisdiction}?
+   - OUTSIDE PERIMETER (zero presence + institutional-only = likely outside scope)
+   - REVERSE SOLICITATION (institutional clients have broader exemptions)
+   - PASSPORTING (EU/MiCA from Ireland, if applicable)
+   - LOCAL LICENSE NEEDED (even for institutional-only service?)
+   - Which Zodia entity (UK, Ireland, ADGM, Jersey) is best positioned?
+
+10. COMPLIANCE GUIDANCE: Clear, actionable verdict with one of:
+    - SERVE (OUTSIDE PERIMETER) - Zodia is outside scope: zero presence + institutional-only + reverse solicitation
+    - SERVE VIA REVERSE SOLICITATION ONLY - in scope but exemption available for institutional clients
+    - SERVE VIA PASSPORTING - use Ireland entity under MiCA
+    - SERVE WITH CONDITIONS - can serve institutional clients with specific restrictions
+    - DECLINE - too risky even for institutional clients, local license required
+    
+    Plus: what must Zodia NEVER do to preserve its position?
+    What triggers would bring Zodia INTO scope even for institutional services?
 
 ONLY include ENACTED, ENFORCED, FINAL, IN FORCE regulations (as of February 2026).
 
+11. SOURCES AND REFERENCES:
+    For EVERY regulation, law, or guidance you cite, provide:
+    - Full official name of the legislation/regulation
+    - The regulatory body that issued it
+    - Date enacted/effective
+    - URL to the official government/regulator source where the text can be found (if known)
+    - URL to the gazette, official journal, or regulatory register
+    List ALL sources used in your analysis. Include URLs to regulator websites, official gazettes,
+    and any publicly accessible regulatory texts. This is critical for verification.
+
 ---
 
-**Format as JSON with these keys:**
+**Format as JSON with these exact keys:**
 {{
     "summary": "...",
     "high_level_risk_points": ["risk 1", "risk 2", ...],
@@ -278,26 +445,38 @@ ONLY include ENACTED, ENFORCED, FINAL, IN FORCE regulations (as of February 2026
     "stablecoin_regulation": "...",
     "store_of_value_facility_rules": "...",
     "regulatory_expectations_and_licensing_triggers": "...",
+    "territorial_scope_and_perimeter_test": "...",
     "reverse_solicitation_and_direct_market_access": "...",
     "cross_border_client_advisory": "...",
-    "compliance_guidance_and_recommendations": "..."
+    "compliance_guidance_and_recommendations": "...",
+    "sources_and_references": ["source 1 with URL", "source 2 with URL", ...]
 }}
 
 Section details:
 {sections_desc}
 
-Be SPECIFIC. Cite laws by name. For the advisory sections, give a CLEAR verdict: SERVE / SERVE WITH CONDITIONS / DECLINE."""
+REMEMBER: Every answer must be through the lens of serving INSTITUTIONAL clients only. If a rule only applies to retail services, say so and explain why it does NOT apply to Zodia.
+
+Be SPECIFIC. Cite laws by name and article. Quote the statutory scope. For the verdict, be unambiguous. For EVERY regulation cited, provide the URL to the official source where the text can be read."""
 
         try:
             messages = [
                 SystemMessage(content=(
-                    "You are a senior regulatory compliance analyst advising Zodia Markets. "
-                    "You ONLY analyze regulations that directly affect Zodia's business: "
-                    "OTC brokerage, electronic exchange, fiat-to-crypto, non-custodial trading, "
-                    "cross-border institutional services. "
-                    "Always cover reverse solicitation and direct market access rules. "
-                    "Only reference enacted/enforced regulations. Cite specific legislation. "
-                    "Give clear SERVE / SERVE WITH CONDITIONS / DECLINE verdicts. "
+                    "You are a senior regulatory compliance analyst and cross-border legal advisor for Zodia Markets. "
+                    "CRITICAL CONTEXT: Zodia serves ONLY INSTITUTIONAL clients (corporations, banks, funds, "
+                    "professional investors). It does NOT serve retail individuals. "
+                    "This means: (1) many retail-focused VASP/crypto rules may NOT apply, "
+                    "(2) institutional/professional client exemptions may be available, "
+                    "(3) reverse solicitation exemptions are often BROADER for institutional clients. "
+                    "Your PRIMARY task is the PERIMETER TEST: determine if Zodia (with zero local presence, "
+                    "zero solicitation, serving institutions only) falls OUTSIDE the territorial scope "
+                    "of each jurisdiction's law. "
+                    "Analyze: territorial scope (provider-location vs client-location test), "
+                    "institutional exemptions, reverse solicitation (broader for institutions?), "
+                    "what Zodia must NEVER do to stay outside scope. "
+                    "Only reference enacted/enforced regulations. Cite specific legislation by name and article. "
+                    "Give clear verdicts: SERVE (OUTSIDE PERIMETER) / SERVE VIA REVERSE SOLICITATION ONLY / "
+                    "SERVE VIA PASSPORTING / SERVE WITH CONDITIONS / DECLINE. "
                     "Zodia is licensed ONLY in UK (FCA), Ireland (CBI), Abu Dhabi (ADGM), Jersey (JFSC)."
                 )),
                 HumanMessage(content=prompt)
@@ -310,6 +489,9 @@ Be SPECIFIC. Cite laws by name. For the advisory sections, give a CLEAR verdict:
             if report:
                 report["_raw_response"] = response_text[:500]
                 report["_regulation_status"] = "enacted_enforced_only"
+                # Ensure sources key exists
+                if "sources_and_references" not in report:
+                    report["sources_and_references"] = []
                 return report
             else:
                 return {
@@ -320,9 +502,11 @@ Be SPECIFIC. Cite laws by name. For the advisory sections, give a CLEAR verdict:
                     "stablecoin_regulation": "See summary",
                     "store_of_value_facility_rules": "See summary",
                     "regulatory_expectations_and_licensing_triggers": "See summary",
+                    "territorial_scope_and_perimeter_test": "See summary",
                     "reverse_solicitation_and_direct_market_access": "See summary",
                     "cross_border_client_advisory": "See summary",
                     "compliance_guidance_and_recommendations": "See summary",
+                    "sources_and_references": [],
                     "_raw_response": response_text[:500],
                     "_parse_error": "Could not parse structured JSON"
                 }
@@ -382,23 +566,31 @@ Be SPECIFIC. Cite laws by name. For the advisory sections, give a CLEAR verdict:
             "stablecoin_regulation": "Requires LLM analysis.",
             "store_of_value_facility_rules": "Requires LLM analysis.",
             "regulatory_expectations_and_licensing_triggers": "Requires LLM analysis.",
+            "territorial_scope_and_perimeter_test": (
+                f"UNKNOWN - Manual legal review required. Determine whether {jurisdiction}'s law "
+                "uses a provider-location test or client-location test. Assess if Zodia with zero "
+                "local presence falls outside the regulatory perimeter."
+            ),
             "reverse_solicitation_and_direct_market_access": (
                 f"UNKNOWN - Manual legal review required for {jurisdiction}. "
-                "Determine if reverse solicitation is permitted and under what conditions."
+                "Determine if reverse solicitation is permitted, whether in statute or guidance, "
+                "and what conditions apply."
             ),
             "cross_border_client_advisory": (
                 f"Zodia Markets {'IS' if is_registered else 'is NOT'} licensed in {jurisdiction}. "
                 + (
                     "Clients can be onboarded under the existing registration."
                     if is_registered else
-                    "Before serving any client, conduct a detailed legal review "
-                    "to determine if a local license is required."
+                    "Apply the perimeter test: with zero presence and zero solicitation, "
+                    "determine if Zodia is outside scope. If not, assess reverse solicitation path."
                 )
             ),
             "compliance_guidance_and_recommendations": (
                 f"Standard onboarding applies." if is_registered else
-                f"RECOMMENDATION: Seek external legal advice before onboarding clients from {jurisdiction}."
+                f"RECOMMENDATION: Conduct perimeter test analysis. If outside scope, serve via "
+                f"reverse solicitation only with full documentation. If in scope, seek local legal advice."
             ),
+            "sources_and_references": [],
             "_news_headlines": news_summary,
             "_registration_info": registration_info,
             "_fallback": True
@@ -412,7 +604,14 @@ Be SPECIFIC. Cite laws by name. For the advisory sections, give a CLEAR verdict:
 
         lines = []
         lines.append(f"# {jurisdiction} - Zodia Markets Regulatory Intelligence")
-        lines.append(f"*Generated: {result.get('timestamp', 'N/A')}*\n")
+        lines.append(f"*Generated: {result.get('timestamp', 'N/A')}*")
+        
+        # Data sources badge
+        data_sources = result.get("data_sources", [])
+        if data_sources:
+            lines.append(f"*Data Sources: {" | ".join(data_sources)}*\n")
+        else:
+            lines.append("")
 
         # Registration badge
         if result.get("is_registered"):
@@ -462,14 +661,20 @@ Be SPECIFIC. Cite laws by name. For the advisory sections, give a CLEAR verdict:
         lines.append(report.get("regulatory_expectations_and_licensing_triggers", "Not available."))
         lines.append("")
 
-        # 8. Reverse Solicitation & Direct Market Access
-        lines.append("## 8. Reverse Solicitation & Direct Market Access")
-        lines.append("*Can Zodia serve clients without local license if the client approaches first?*\n")
+        # 8. Territorial Scope & Perimeter Test
+        lines.append("## 8. Territorial Scope & Perimeter Test")
+        lines.append("*If Zodia has ZERO presence and ZERO solicitation - is it outside scope?*\n")
+        lines.append(report.get("territorial_scope_and_perimeter_test", "Not available."))
+        lines.append("")
+
+        # 9. Reverse Solicitation & Direct Market Access
+        lines.append("## 9. Reverse Solicitation & Direct Market Access")
+        lines.append("*Deep dive: conditions, documentation, what breaks it, enforcement risk*\n")
         lines.append(report.get("reverse_solicitation_and_direct_market_access", "Not available."))
         lines.append("")
 
-        # 9. Cross-Border Client Advisory
-        lines.append("## 9. Cross-Border Client Advisory")
+        # 10. Cross-Border Client Advisory
+        lines.append("## 10. Cross-Border Client Advisory")
         lines.append(f"*Can Zodia serve a client from {jurisdiction}?*\n")
         if result.get("is_registered"):
             lines.append(f"**ZODIA IS LICENSED HERE** - {reg_info.get('entity', '')}\n")
@@ -478,24 +683,73 @@ Be SPECIFIC. Cite laws by name. For the advisory sections, give a CLEAR verdict:
         lines.append(report.get("cross_border_client_advisory", "Not available."))
         lines.append("")
 
-        # 10. Compliance Guidance
-        lines.append("## 10. Compliance Guidance & Recommendations")
-        lines.append("*Actionable advice for Zodia Markets compliance team*\n")
+        # 11. Compliance Guidance
+        lines.append("## 11. Compliance Guidance & Recommendations")
+        lines.append("*Verdict and actionable advice for Zodia Markets compliance team*\n")
         lines.append(report.get("compliance_guidance_and_recommendations", "Not available."))
         lines.append("")
 
-        # News
+        # 12. Sources & References (from LLM analysis)
+        lines.append("## 12. Sources & References")
+        lines.append("*Official regulatory sources cited in this analysis*\n")
+        sources = report.get("sources_and_references", [])
+        if isinstance(sources, list) and sources:
+            for i, src in enumerate(sources, 1):
+                lines.append(f"{i}. {src}")
+        elif isinstance(sources, str) and sources:
+            lines.append(sources)
+        else:
+            lines.append("No specific source URLs provided by analysis engine.")
+        lines.append("")
+
+        # 13. Live News Feed (from NewsAPI - LIVE data)
         news = result.get("news_articles", [])
+        lines.append("## 13. Live Regulatory News Feed")
+        lines.append(f"*LIVE data from NewsAPI - scraped at time of analysis ({result.get('timestamp', 'N/A')[:10]})*")
+        lines.append(f"*{len(news)} articles found in the last 30 days*\n")
         if news:
-            lines.append("## 11. Recent News & Developments")
-            for i, article in enumerate(news[:5], 1):
-                lines.append(f"{i}. **{article.get('title', 'N/A')}**")
-                lines.append(f"   {article.get('published_at', '')[:10]} | {article.get('source', '')}")
-                lines.append(f"   {article.get('url', '')}")
+            for i, article in enumerate(news[:15], 1):
+                title = article.get('title', 'N/A')
+                date = article.get('published_at', '')[:10]
+                source = article.get('source', 'Unknown')
+                url = article.get('url', '')
+                author = article.get('author', '')
+                content_preview = article.get('content', '')[:150]
+
+                lines.append(f"### {i}. {title}")
+                lines.append(f"**Source:** {source} | **Date:** {date}" + (f" | **Author:** {author}" if author else ""))
+                if url:
+                    lines.append(f"**URL:** {url}")
+                if content_preview:
+                    lines.append(f"> {content_preview}...")
+                lines.append("")
+        else:
+            lines.append("No recent news articles found for this jurisdiction in the last 30 days.")
             lines.append("")
 
+        # Data freshness disclaimer
         lines.append("---")
-        lines.append(f"*Only enacted/enforced/final regulations. Duration: {result.get('duration_seconds', 0):.1f}s*")
+        lines.append("## Data Freshness & Methodology")
+        lines.append("")
+        lines.append("| Component | Source | Freshness |")
+        lines.append("|-----------|--------|-----------|")
+        kb_status = "Loaded" if result.get("kb_data_available") else "No data for this jurisdiction"
+        news_status = f"{result.get('news_articles_found', 0)} articles" if result.get("newsapi_available") else "API expired/unavailable"
+        lines.append(f"| Local Knowledge Base | 257 jurisdictions previously scraped | {kb_status} |")
+        lines.append(f"| Live News Feed | NewsAPI | {news_status} |")
+        lines.append("| Regulatory Analysis | DeepSeek LLM + KB + news context | LLM training data + injected context |")
+        lines.append("| Source URLs | LLM-provided + NewsAPI URLs | Verify independently |")
+        lines.append("")
+        lines.append("**How this analysis works:**")
+        lines.append("1. **Local Knowledge Base**: Previously scraped regulatory data from 257 jurisdictions is loaded and injected into the LLM as context")
+        lines.append("2. **Live News** (if NewsAPI available): Real-time news articles are scraped and also injected as context")
+        lines.append("3. **DeepSeek LLM**: Analyzes the jurisdiction using its training knowledge + both injected data sources")
+        lines.append("4. The LLM's own knowledge covers regulations up to its training cutoff")
+        lines.append("5. The knowledge base extends this with your previously researched data")
+        lines.append("6. Live news (when available) catches the most recent developments")
+        lines.append("- **Recommendation:** Cross-reference this report with official regulator websites for the most current information")
+        lines.append("")
+        lines.append(f"*Report generated: {result.get('timestamp', 'N/A')} | Duration: {result.get('duration_seconds', 0):.1f}s | Only enacted/enforced/final regulations*")
 
         return "\n".join(lines)
 

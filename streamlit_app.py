@@ -384,11 +384,15 @@ with tab_zodia:
         st.markdown("---")
         st.markdown("### Advisory & Compliance Guidance")
 
-        with st.expander("🔄 8. Reverse Solicitation & Direct Market Access", expanded=True):
-            st.markdown("**Can Zodia serve clients without local license if the client approaches first?**\n")
+        with st.expander("🎯 8. Territorial Scope & Perimeter Test", expanded=True):
+            st.markdown("**If Zodia has ZERO presence and ZERO solicitation - is it outside scope?**\n")
+            st.markdown(report.get("territorial_scope_and_perimeter_test", "Not available."))
+
+        with st.expander("🔄 9. Reverse Solicitation & Direct Market Access", expanded=True):
+            st.markdown("**Deep dive: conditions, documentation, what breaks it, enforcement risk**\n")
             st.markdown(report.get("reverse_solicitation_and_direct_market_access", "Not available."))
 
-        with st.expander("🌍 9. Cross-Border Client Advisory", expanded=True):
+        with st.expander("🌍 10. Cross-Border Client Advisory", expanded=True):
             st.markdown(f"**Can Zodia Markets serve a client from {jurisdiction}?**\n")
             if result.get("is_registered"):
                 st.success(f"Zodia IS licensed in {jurisdiction}.")
@@ -396,19 +400,53 @@ with tab_zodia:
                 st.warning(f"Zodia is NOT licensed in {jurisdiction}. See advisory below.")
             st.markdown(report.get("cross_border_client_advisory", "Not available."))
 
-        with st.expander("✅ 10. Compliance Guidance & Recommendations", expanded=True):
-            st.markdown("**Actionable advice for Zodia Markets compliance team:**\n")
+        with st.expander("✅ 11. Compliance Guidance & Verdict", expanded=True):
+            st.markdown("**Verdict and actionable advice for Zodia Markets compliance team:**\n")
             st.markdown(report.get("compliance_guidance_and_recommendations", "Not available."))
 
-        # News
+        # Sources & References
+        with st.expander("📚 12. Sources & References"):
+            st.markdown("**Official regulatory sources cited in this analysis:**\n")
+            sources = report.get("sources_and_references", [])
+            if isinstance(sources, list) and sources:
+                for i, src in enumerate(sources, 1):
+                    st.markdown(f"{i}. {src}")
+            elif isinstance(sources, str) and sources:
+                st.markdown(sources)
+            else:
+                st.info("No specific source URLs provided. Refer to the regulatory body's website for official texts.")
+
+        # Live News Feed
         news = result.get("news_articles", [])
-        if news:
-            with st.expander(f"📰 10. Recent News ({len(news)} articles)"):
-                for i, a in enumerate(news[:10], 1):
-                    st.markdown(f"**{i}. {a.get('title', 'N/A')}**")
-                    st.caption(f"{a.get('published_at', 'N/A')[:10]} | {a.get('source', 'N/A')}")
-                    st.markdown(f"[Read Article]({a.get('url', '#')})")
+        with st.expander(f"📡 13. Live News Feed ({len(news)} articles - LIVE)", expanded=False):
+            st.markdown(f"**Data Source:** NewsAPI (live scraping)")
+            st.markdown(f"**Scraped at:** {result.get('timestamp', 'N/A')[:19]}")
+            st.markdown(f"**Coverage:** Last 30 days | VASP, crypto, stablecoin, digital asset regulation\n")
+            if news:
+                for i, a in enumerate(news[:15], 1):
+                    st.markdown(f"### {i}. {a.get('title', 'N/A')}")
+                    col1, col2, col3 = st.columns(3)
+                    col1.caption(f"Date: {a.get('published_at', 'N/A')[:10]}")
+                    col2.caption(f"Source: {a.get('source', 'N/A')}")
+                    author = a.get('author', '')
+                    if author:
+                        col3.caption(f"Author: {author}")
+                    url = a.get('url', '')
+                    if url:
+                        st.markdown(f"[Read Full Article]({url})")
+                    content = a.get('content', '') or a.get('description', '')
+                    if content:
+                        st.markdown(f"> {content[:300]}...")
                     st.markdown("---")
+            else:
+                st.info("No recent news articles found for this jurisdiction in the last 30 days.")
+            
+            st.markdown("---")
+            st.markdown("**How new regulations are detected:**")
+            st.markdown("- NewsAPI continuously scrapes global news sources")
+            st.markdown("- New regulatory developments appear as soon as reported by any news outlet")
+            st.markdown("- The LLM analysis incorporates live news articles as context")
+            st.markdown("- **Recommendation:** Cross-reference with official regulator websites")
 
         # Export
         if export_btn:
